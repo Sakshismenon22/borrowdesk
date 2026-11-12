@@ -388,3 +388,40 @@
  .funding-ledger-totals{justify-content:space-between;gap:10px;flex-wrap:wrap}
  .funding-ledger-totals>div{flex:1;min-width:130px}
 }
+
+
+/* Demo Funding & account: keep the ledger and request form side by side. */
+.main:has(.funding-ledger-totals){position:relative}
+.main:has(.funding-ledger-totals) .filters,
+.main:has(.funding-ledger-totals) .tablebox,
+.main:has(.funding-ledger-totals) .funding-ledger-totals,
+.main:has(.funding-ledger-totals) .footrow,
+.main:has(.funding-ledger-totals) .details{width:62%;max-width:62%}
+.main:has(.funding-ledger-totals) .details{
+ display:block;
+ min-height:180px;
+ margin-top:10px;
+ border:1px solid #dfe2e7;
+}
+.main:has(.funding-ledger-totals) .details>section{width:100%;padding:12px}
+.main:has(.funding-ledger-totals) .details>aside{
+ position:absolute;
+ top:264px;
+ right:20px;
+ width:35%;
+ min-height:430px;
+ padding:16px;
+ border:1px solid #dfe2e7;
+ background:#fff;
+}
+.main:has(.funding-ledger-totals) .details>aside h2{margin-bottom:14px}
+.main:has(.funding-ledger-totals) .details>aside form{gap:12px}
+.main:has(.funding-ledger-totals) .funding-ledger-totals{justify-content:space-between}
+@media(max-width:900px){
+ .main:has(.funding-ledger-totals) .filters,
+ .main:has(.funding-ledger-totals) .tablebox,
+ .main:has(.funding-ledger-totals) .funding-ledger-totals,
+ .main:has(.funding-ledger-totals) .footrow,
+ .main:has(.funding-ledger-totals) .details{width:100%;max-width:100%}
+ .main:has(.funding-ledger-totals) .details>aside{position:static;width:100%;min-height:0;border-top:1px solid #dfe2e7}
+}
