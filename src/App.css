@@ -301,3 +301,55 @@
 .margin-call-history th{height:27px;background:#edf0f4;text-align:left;padding:0 8px}
 .margin-call-history td{height:27px;padding:0 8px;border-top:1px solid #e8eaee}
 @media(max-width:1000px){.margin-coverage-grid{grid-template-columns:1fr}}
+
+
+/* Demo Margin Calls: keep the complete workspace within one desktop viewport. */
+.main main:has(.margin-call-demo-details){
+ height:calc(100vh - 50px);
+ min-height:0;
+ overflow:hidden;
+ display:flex;
+ flex-direction:column;
+ padding:8px 9px 8px;
+}
+.main main:has(.margin-call-demo-details)>.heading,
+.main main:has(.margin-call-demo-details)>.margin-call-warning,
+.main main:has(.margin-call-demo-details)>.stats,
+.main main:has(.margin-call-demo-details)>.tabs,
+.main main:has(.margin-call-demo-details)>.filters,
+.main main:has(.margin-call-demo-details)>.footrow{flex:none}
+.main main:has(.margin-call-demo-details)>.heading{padding-bottom:7px}
+.main main:has(.margin-call-demo-details)>.margin-call-warning{min-height:25px;margin:5px 0}
+.main main:has(.margin-call-demo-details)>.stats{padding:7px 0}
+.main main:has(.margin-call-demo-details)>.tabs{height:34px}
+.main main:has(.margin-call-demo-details)>.filters{padding:6px 0;gap:9px}
+.main main:has(.margin-call-demo-details)>.tablebox{flex:0 1 185px;min-height:110px;max-height:185px;overflow:auto}
+.main main:has(.margin-call-demo-details)>.tablebox th{height:29px}
+.main main:has(.margin-call-demo-details)>.tablebox td{height:27px}
+.main main:has(.margin-call-demo-details)>.footrow{height:27px}
+.main main:has(.margin-call-demo-details)>.margin-call-demo-details{flex:1 1 0;min-height:0;margin-top:7px;overflow:hidden}
+.margin-call-demo-details>section{display:flex;flex-direction:column;min-height:0;overflow:hidden;padding:10px 12px}
+.margin-call-demo-details .detailhead{flex:none}
+.margin-call-demo-details .detailtabs{height:32px;flex:none;margin:2px 0 8px}
+.margin-call-demo-details .margin-coverage-grid{flex:1;min-height:0;overflow:auto}
+.margin-call-demo-details .margin-coverage-calculation,
+.margin-call-demo-details .margin-coverage-response{align-self:stretch}
+.margin-call-demo-details .margin-call-history{flex:1;min-height:0;max-height:none;overflow:auto}
+@media(max-height:780px){
+ .main main:has(.margin-call-demo-details)>.tablebox{flex-basis:165px;max-height:165px}
+ .main main:has(.margin-call-demo-details)>.tablebox th{height:27px}
+ .main main:has(.margin-call-demo-details)>.tablebox td{height:25px}
+ .main main:has(.margin-call-demo-details)>.stats{padding:5px 0}
+ .margin-call-demo-details>section{padding:8px 10px}
+ .margin-call-demo-details .detailtabs{height:29px;margin-bottom:6px}
+ .margin-coverage-calculation>div{min-height:20px;padding:2px 6px}
+ .margin-coverage-response form{gap:4px}
+ .margin-coverage-response input,.margin-coverage-response select{height:24px}
+ .margin-coverage-response button{height:26px}
+}
+@media(max-width:820px){
+ .main main:has(.margin-call-demo-details){height:auto;min-height:calc(100vh - 50px);overflow:auto}
+ .main main:has(.margin-call-demo-details)>.margin-call-demo-details{flex:none;min-height:300px;overflow:visible}
+ .margin-call-demo-details>section{overflow:visible}
+ .margin-call-demo-details .margin-coverage-grid{overflow:visible}
+}
