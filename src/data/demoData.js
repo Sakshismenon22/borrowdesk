@@ -121,7 +121,7 @@ export const demoRows={
  {id:'RC-000040',loanId:'LN-000248',security:'INFY',lender:'Alpha Asset Mgmt',quantity:2000,fulfilledQuantity:2000,dueAt:'2026-11-09T14:30:00+05:30',status:'SETTLED'}
 ],
 'Agreements':[
- {id:1401,number:'MSLA-2026-014',lender:'Apex Capital',effectiveDate:'2026-01-01',expiryDate:'2026-12-31',creditLimit:25000000,feeRate:.035,rebateRate:.012,status:'ACTIVE'},
+ {id:1401,number:'MSLA-2026-0017',lender:'Alpha Asset Mgmt',effectiveDate:'2026-11-01',expiryDate:'2027-10-31',creditLimit:30000000,feeRate:.032,rebateRate:.02,coverageRatio:1.05,dayBasis:365,billingFrequency:'MONTHLY',rebateSettlementFrequency:'WEEKLY',recallAllowed:true,marginHours:24,recallHours:48,status:'ACCEPTED'},
  {id:1402,number:'MSLA-2026-008',lender:'Meridian Securities',effectiveDate:'2026-04-01',expiryDate:'2027-03-31',creditLimit:18000000,feeRate:.03,rebateRate:.01,status:'ACTIVE'}
 ],
 'Reports & audit':[
