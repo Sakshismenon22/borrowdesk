@@ -922,3 +922,93 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
   .shell:has(.returns-recall-demo-details){min-width:760px}
   .main:has(.returns-recall-demo-details) .returns-detail-content{grid-template-columns:minmax(0,1.2fr) minmax(250px,1fr)}
 }
+
+
+/* Demo Agreements: full-width eligibility and credit-history workspace. */
+.main:has(.agreements-demo-details) .stats:has(>div:nth-child(6)){
+  grid-template-columns:repeat(6,minmax(0,1fr));
+}
+.agreements-demo-details{
+  display:block !important;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin-top:8px;
+}
+.agreements-demo-details>section{
+  width:100%;
+  min-width:0;
+  padding:10px 12px;
+}
+.agreements-demo-details .agreement-detail-content{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  width:100%;
+  min-width:0;
+}
+.agreement-detail-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px;
+  padding:10px;
+  border:1px solid #e1e5ea;
+  border-radius:5px;
+  background:#fff;
+}
+.agreement-detail-grid>div{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  min-width:0;
+}
+.agreement-detail-grid small{
+  color:#707986;
+  font-size:9px;
+}
+.agreement-detail-grid b{
+  color:#303844;
+  font-size:11px;
+  overflow-wrap:anywhere;
+}
+.agreement-eligibility-table,
+.agreement-credit-history{
+  width:100%;
+  min-width:0;
+  border:1px solid #e1e5ea;
+  border-radius:5px;
+  padding:10px;
+  background:#fff;
+}
+.agreement-eligibility-table h3,
+.agreement-credit-history h3{
+  margin:0 0 8px;
+  font-size:12px;
+}
+.agreement-eligibility-table table,
+.agreement-credit-history table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:10px;
+}
+.agreement-eligibility-table th,.agreement-eligibility-table td,
+.agreement-credit-history th,.agreement-credit-history td{
+  padding:8px 9px;
+  border-bottom:1px solid #e8ebef;
+  text-align:left;
+  white-space:nowrap;
+}
+.agreement-eligibility-table th,.agreement-credit-history th{
+  background:#f1f3f6;
+  color:#4e5865;
+  font-weight:650;
+}
+.agreement-eligibility-table tbody tr:last-child td,
+.agreement-credit-history tbody tr:last-child td{border-bottom:0}
+@media(max-width:1050px){
+  .agreement-detail-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:740px){
+  .agreement-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .agreement-eligibility-table,.agreement-credit-history{overflow:auto}
+}
