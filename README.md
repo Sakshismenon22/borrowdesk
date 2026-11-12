@@ -12,6 +12,40 @@ npm run dev
 
 Open http://localhost:5173.
 
+## Frontend structure
+
+```text
+src/
+  components/
+    layout/
+      Sidebar.jsx
+      TopBar.jsx
+    trading/
+      TradingWorkspace.jsx
+  data/
+    demoData.js
+  pages/
+    WorkspacePage.jsx
+    TradingPage.jsx
+  routes/
+    AppRouter.jsx
+    routeConfig.js
+  services/
+    apiClient.js
+    apiConfig.js
+    borrowerService.js
+    marketDataService.js
+  App.jsx
+  main.jsx
+  App.css
+  index.css
+```
+
+- React Router DOM owns navigation; each workspace destination has its own URL.
+- Page-level screens live in `pages/`; reusable shell and Trading UI live in `components/`.
+- API base URLs and request handling live in `services/`. Market-data endpoint paths are kept identical to the backend controller mappings.
+- Demo fixtures live in `data/`.
+
 ## Backend services
 
 | Service | Default URL | Responsibility |
@@ -46,7 +80,7 @@ The UI connects to the existing borrower APIs for locate requests, reservations,
 The top-bar **Live data / Demo data** selector changes the source used by the workspace.
 
 - **Live data** loads the selected organization's records from the borrower and lender Spring Boot services. Trading loads the displayed security universe from market-data-service `/api/v1/security-master/get-all-securities`, overlays prices/OHLCV from `/api/v1/securities-current-price/get-all-securities-current-prices`, and loads historical OHLCV candles from `/api/v1/security-data/history?symbol={symbol}&exchange={exchange}`. The borrower security list is used only to map market symbols to borrower IDs for watchlist and order operations; its prices are not displayed. The Trading screen alone uses TradingView Lightweight Charts with client-side timeframe aggregation and a volume histogram. Orders are submitted to `POST /api/v1/organizations/{org}/orders`.
-- **Demo data** uses the frontend fixtures in `src/demoData.js` for sample dashboard, borrowing, collateral, account, agreement and trading records. Demo order/watchlist actions stay local and never call transaction APIs.
+- **Demo data** uses the frontend fixtures in `src/data/demoData.js` for sample dashboard, borrowing, collateral, account, agreement and trading records. Demo order/watchlist actions stay local and never call transaction APIs.
 
 ## Trading workspace
 
