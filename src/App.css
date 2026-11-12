@@ -1344,3 +1344,12 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
 .funding-confirmed-summary small{font-size:8px;color:#6d7d70}
 .funding-confirmed-summary>div>b{font-size:9px;color:#293d30;overflow-wrap:anywhere}
 @media(max-height:760px){.funding-confirmed-summary{gap:6px;margin:6px 7px 6px 0;padding:7px}.funding-confirmed-title{padding-bottom:4px}}
+
+
+/* Funding & account demo heading matches the ledger table header surface. */
+.main .funding-demo-heading{background:#f0f2f5;color:#29313b;padding:0 10px;border:1px solid #e0e4e9;border-radius:3px}
+.main .funding-demo-heading h1{color:#29313b}
+.main .funding-demo-heading p{color:#687381}
+/* Confirmed transaction information stays on the same white detail-card surface. */
+.funding-confirmed-summary{background:#fff;border-left:1px solid #e1e5e9;border-radius:0;color:#34483a}
+.funding-confirmed-title{border-bottom:1px solid #e6e9ed}
