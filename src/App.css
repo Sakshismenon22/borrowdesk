@@ -1406,3 +1406,60 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
 }
 @media(max-width:1050px){.blotter-detail-grid{grid-template-columns:1fr 1.1fr 1fr 1fr}.blotter-actions button{padding:0 4px}.blotter-filters{gap:5px}}
 @media(max-width:760px){.borrowing-blotter-demo{overflow:auto;height:auto;min-height:calc(100vh - 50px)}.main:has(.borrowing-blotter-demo) main{height:auto;overflow:visible}.shell:has(.borrowing-blotter-demo){height:auto;overflow:visible}.blotter-request-table,.blotter-exceptions{flex:none;overflow:auto}.blotter-detail-grid{grid-template-columns:1fr 1fr}.blotter-detail-grid article{min-height:140px}.blotter-filters{overflow-x:auto}.blotter-actions{display:none}}
+
+
+/* Shared single-viewport layout for every DEMO screen.
+   Live mode intentionally keeps its existing layout and scrolling behaviour. */
+.demo-viewport-shell{height:100vh;min-height:0;overflow:hidden}
+.demo-viewport-shell>.side{height:100vh;min-height:0;overflow:hidden;flex:0 0 206px}
+.demo-viewport-shell>.main{height:100vh;min-height:0;overflow:hidden;flex:1 1 auto}
+.demo-viewport-shell>.main>header{height:50px;min-height:50px;flex:0 0 50px}
+.demo-viewport-shell>.main>main{height:calc(100vh - 50px);min-height:0;max-height:calc(100vh - 50px);box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column;padding:9px 14px 4px;gap:0}
+.demo-viewport-shell .heading{padding-bottom:7px;gap:8px}
+.demo-viewport-shell .heading h1{font-size:18px}
+.demo-viewport-shell .heading p{font-size:10px}
+.demo-viewport-shell .stats{min-height:31px;padding:5px 0;gap:4px}
+.demo-viewport-shell .stats>div{min-width:0;padding:0 7px}
+.demo-viewport-shell .stats span{font-size:9px;white-space:nowrap}
+.demo-viewport-shell .stats b{font-size:12px;white-space:nowrap}
+.demo-viewport-shell .tabs{height:29px;min-height:29px;flex:0 0 29px;overflow:hidden}
+.demo-viewport-shell .tabs button{font-size:10px;padding:0 9px;white-space:nowrap}
+.demo-viewport-shell .filters{min-height:29px;flex:0 0 auto;flex-wrap:nowrap;overflow:hidden;padding:4px 0;gap:6px}
+.demo-viewport-shell .filters label{font-size:9px;white-space:nowrap}
+.demo-viewport-shell .filters input,.demo-viewport-shell .filters select{height:24px;font-size:9px;max-width:145px}
+.demo-viewport-shell .tablebox{flex:0 1 150px;min-height:86px;max-height:150px;overflow:auto;scrollbar-width:none}
+.demo-viewport-shell .tablebox::-webkit-scrollbar{display:none}
+.demo-viewport-shell .tablebox th{height:24px;padding:4px 6px;font-size:8px}
+.demo-viewport-shell .tablebox td{height:23px;padding:3px 6px;font-size:8px}
+.demo-viewport-shell .footrow{height:20px;min-height:20px;flex:0 0 20px;padding:3px 7px;font-size:8px}
+.demo-viewport-shell .details{flex:1 1 auto;min-height:0;max-height:none;overflow:hidden;margin-top:6px}
+.demo-viewport-shell .details>section,.demo-viewport-shell .details>aside{min-height:0;overflow:hidden}
+.demo-viewport-shell .detailhead{flex:0 0 auto}
+.demo-viewport-shell .detailtabs{flex:0 0 auto}
+.demo-viewport-shell .detailgrid{min-height:0;overflow:hidden}
+.demo-viewport-shell .detailgrid>div{min-width:0}
+.demo-viewport-shell .details aside{overflow:hidden}
+.demo-viewport-shell .bottom{flex:1 1 auto;min-height:0;overflow:hidden;margin-top:7px}
+.demo-viewport-shell .bottom section{min-height:0;overflow:hidden;padding:9px}
+.demo-viewport-shell footer{height:22px;min-height:22px;flex:0 0 22px;margin-top:auto;font-size:8px}
+.demo-viewport-shell .error,.demo-viewport-shell .toast{flex:0 0 auto}
+.demo-viewport-shell .tablebox,.demo-viewport-shell .details,.demo-viewport-shell .bottom,.demo-viewport-shell .detailgrid{scrollbar-width:none}
+.demo-viewport-shell .tablebox::-webkit-scrollbar,.demo-viewport-shell .details::-webkit-scrollbar,.demo-viewport-shell .bottom::-webkit-scrollbar,.demo-viewport-shell .detailgrid::-webkit-scrollbar{display:none}
+@media(max-height:760px){
+ .demo-viewport-shell>.main>main{padding:6px 10px 2px}
+ .demo-viewport-shell .heading{padding-bottom:5px}
+ .demo-viewport-shell .stats{min-height:27px;padding:3px 0}
+ .demo-viewport-shell .tabs{height:26px;min-height:26px;flex-basis:26px}
+ .demo-viewport-shell .filters{min-height:25px;padding:2px 0}
+ .demo-viewport-shell .tablebox{flex-basis:125px;max-height:125px;min-height:70px}
+ .demo-viewport-shell .tablebox th{height:21px;padding:2px 5px}
+ .demo-viewport-shell .tablebox td{height:19px;padding:2px 5px}
+ .demo-viewport-shell .details{margin-top:4px}
+ .demo-viewport-shell footer{height:18px;min-height:18px;flex-basis:18px}
+}
+@media(max-width:760px){
+ .demo-viewport-shell>.side{flex-basis:58px}
+ .demo-viewport-shell>.main>main{padding:6px;overflow:hidden}
+ .demo-viewport-shell .filters{overflow:hidden}
+ .demo-viewport-shell .tablebox{overflow:hidden}
+}
