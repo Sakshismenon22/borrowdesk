@@ -40,7 +40,7 @@ export default function App(){
   finally{Busy(false)}
  },[page,tab,org,path,base,mode])
  useEffect(()=>{load()},[load])
- useEffect(()=>{if(mode==='DEMO'){Lenders([{id:1,name:'Apex Capital'},{id:2,name:'Meridian Securities'}]);Agreements(demoRows.Agreements);Securities(demoSecurities);return}if(page==='Agreements')api(B,base+'/lenders').then(x=>Lenders(list(x))).catch(e=>E('Unable to load lenders: '+e.message));if(page==='Locate requests'){Promise.all([api(B,base+'/agreements?size=200'),api(B,'/api/v1/securities')]).then(([a,b])=>{Agreements(list(a));Securities(list(b))}).catch(e=>E('Unable to load locate reference data: '+e.message))}},[page,base,securityQuery,mode])
+ useEffect(()=>{if(mode==='DEMO'){Lenders([{id:1,name:'Apex Capital'},{id:2,name:'Meridian Securities'}]);Agreements(demoRows.Agreements);Securities(demoSecurities);return}if(page==='Agreements')api(B,base+'/lenders').then(x=>Lenders(list(x))).catch(e=>E('Unable to load lenders: '+e.message));if(page==='Locate requests'){Promise.all([api(B,base+'/agreements?size=200'),api(B,'/api/v1/securities')]).then(([a,b])=>{Agreements(list(a));Securities(list(b))}).catch(e=>E('Unable to load locate reference data: '+e.message))}},[page,base,mode])
  useEffect(()=>{if(toast){let t=setTimeout(()=>Toast(''),3000);return()=>clearTimeout(t)}},[toast])
  const filtered=useMemo(()=>rows.filter(x=>Object.values(x).map(val).join(' ').toLowerCase().includes(search.toLowerCase())&&(status==='All status'||String(x.status||'').toLowerCase()===status.toLowerCase())&&(!counter||(x.counterparty||x.lender)===counter)),[rows,search,status,counter])
  const id=x=>x?.id??x?.locateId??x?.reservationId??x?.loanId??x?.callId??x?.recallId??x?.feeId
