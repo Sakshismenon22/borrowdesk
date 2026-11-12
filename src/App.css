@@ -301,38 +301,3 @@
 .margin-call-history th{height:27px;background:#edf0f4;text-align:left;padding:0 8px}
 .margin-call-history td{height:27px;padding:0 8px;border-top:1px solid #e8eaee}
 @media(max-width:1000px){.margin-coverage-grid{grid-template-columns:1fr}}
-
-
-/* Give the demo Margin Calls workspace more usable vertical and horizontal space. */
-.main main:has(.margin-call-demo-details){display:flex;flex-direction:column;min-height:calc(100vh - 50px);padding-bottom:14px}
-.main main:has(.margin-call-demo-details) .margin-call-demo-details{flex:1 0 360px;min-height:360px;margin-top:8px}
-.margin-call-demo-details>section{display:flex;flex-direction:column;padding:16px 18px}
-.margin-call-demo-details .detailhead{min-height:34px}
-.margin-call-demo-details .detailhead h2{font-size:18px}
-.margin-call-demo-details .detailtabs{height:42px;flex:none;margin:3px 0 12px;gap:26px}
-.margin-call-demo-details .detailtabs>button{font-size:12px;padding:0 3px}
-.margin-coverage-grid{grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr);gap:16px;flex:1;align-items:stretch}
-.margin-coverage-calculation,.margin-coverage-response{padding:14px 16px;border-radius:5px}
-.margin-coverage-calculation h3,.margin-coverage-response h3{font-size:13px;margin-bottom:12px}
-.margin-coverage-calculation>div{min-height:34px;padding:6px 10px;font-size:11px;gap:16px}
-.margin-coverage-calculation>div b{font-size:12px}
-.margin-coverage-response form{gap:10px}
-.margin-coverage-response label{gap:5px;font-size:11px}
-.margin-coverage-response input,.margin-coverage-response select{height:35px;padding:0 10px;font-size:12px}
-.margin-coverage-response button{height:37px;font-size:11px;margin-top:3px}
-.margin-coverage-response small{font-size:10px;margin-top:1px}
-.margin-call-history{max-height:none;flex:1;min-height:150px}
-.margin-call-history table{font-size:11px}
-.margin-call-history th,.margin-call-history td{height:36px;padding:0 12px}
-@media(max-height:850px){
- .main main:has(.margin-call-demo-details) .tablebox{max-height:235px;min-height:150px}
- .main main:has(.margin-call-demo-details) .margin-call-demo-details{flex-basis:345px;min-height:345px}
- .margin-coverage-calculation>div{min-height:30px}
-}
-@media(max-width:900px){
- .main main:has(.margin-call-demo-details){display:block;min-height:calc(100vh - 50px)}
- .main main:has(.margin-call-demo-details) .margin-call-demo-details{min-height:0}
- .margin-call-demo-details>section{padding:12px}
- .margin-coverage-grid{grid-template-columns:1fr;gap:10px}
- .margin-coverage-calculation>div{min-height:28px}
-}
