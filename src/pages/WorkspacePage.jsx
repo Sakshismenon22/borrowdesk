@@ -48,6 +48,7 @@ export default function WorkspacePage({page}){
   }catch(e){R([]);S(null);E(e.message+' — check the backend service and organization ID.')}
   finally{Busy(false)}
  },[page,tab,org,path,base,mode])
+ useEffect(()=>{if(page==='Returns & recalls'&&!tab)T('Open recalls')},[page,tab])
  useEffect(()=>{load()},[load])
  useEffect(()=>{if(mode==='DEMO'){Lenders([{id:1,name:'Apex Capital'},{id:2,name:'Meridian Securities'}]);Agreements(demoRows.Agreements);Securities(demoSecurities);return}if(page==='Agreements')borrowerRequest(B,base+'/lenders').then(x=>Lenders(list(x))).catch(e=>E('Unable to load lenders: '+e.message));if(page==='Locate requests'){Promise.all([borrowerRequest(B,base+'/agreements?size=200'),borrowerRequest(B,'/api/v1/securities')]).then(([a,b])=>{Agreements(list(a));Securities(list(b))}).catch(e=>E('Unable to load locate reference data: '+e.message))}},[page,base,mode])
  useEffect(()=>{if(toast){let t=setTimeout(()=>Toast(''),3000);return()=>clearTimeout(t)}},[toast])
