@@ -33,3 +33,5 @@
 .locate-drawer .hint{background:#fbf2e3;color:#75582f;font-size:12px;padding:12px}
 .locate-drawer .full{height:42px}
 @media(max-width:760px){.stats:has(>div:nth-child(6)){grid-template-columns:repeat(2,minmax(0,1fr))}.locate-reserve-row{align-items:flex-start;flex-direction:column}.locate-search{max-width:none;flex:1 1 100%}}
+
+/* Demo Locate Requests refresh commit; presentation rules remain demo-scoped. */
