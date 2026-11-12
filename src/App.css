@@ -116,3 +116,68 @@
 .demo-trading-page .search-match-select small{font-size:8px;color:#78818d;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .demo-trading-page .search-match>strong,.demo-trading-page .search-match>span{font-size:9px;white-space:nowrap}
 .demo-trading-page .search-match-add{height:23px;width:24px;border:1px solid #d8dde4;border-radius:4px;background:#fff;color:#a76528;font-size:13px}
+
+
+/* Demo-only Collateral workspace: compact single-viewport layout */
+.main:has(.collateral-demo-details){height:100vh;min-height:0;overflow:hidden}
+.main:has(.collateral-demo-details)>main{display:flex;flex-direction:column;min-height:0;overflow:hidden;padding-top:10px}
+.main:has(.collateral-demo-details)>.heading{flex:none}
+.main:has(.collateral-demo-details) .heading{flex:none;padding-bottom:8px}
+.main:has(.collateral-demo-details) .stats{flex:none;grid-template-columns:repeat(7,minmax(0,1fr));padding:8px 0}
+.main:has(.collateral-demo-details) .stats>div{padding:0 8px;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.main:has(.collateral-demo-details) .stats span{font-size:9px;white-space:nowrap}
+.main:has(.collateral-demo-details) .stats b{font-size:13px}
+.main:has(.collateral-demo-details) .tabs{flex:none;height:34px}
+.main:has(.collateral-demo-details) .filters{flex:none;padding:7px 0;gap:8px}
+.main:has(.collateral-demo-details) .tablebox{flex:none;max-height:170px;min-height:100px;overflow:auto}
+.main:has(.collateral-demo-details) .tablebox th{height:29px}
+.main:has(.collateral-demo-details) .tablebox td{height:28px}
+.collateral-total{display:flex;align-items:center;justify-content:flex-end;gap:18px;padding:7px 12px;background:#f7f8fa;border:1px solid #e0e3e8;border-top:0;font-size:10px;color:#626b77}
+.collateral-total b{font-size:13px;color:#252a32}
+.main:has(.collateral-demo-details) .footrow{flex:none;height:27px}
+.collateral-demo-details{display:block;flex:1;min-height:150px;overflow:hidden;margin-top:8px}
+.collateral-demo-details>section{height:100%;padding:9px 12px;display:flex;flex-direction:column;overflow:hidden}
+.collateral-demo-details .detailhead{flex:none}
+.collateral-demo-details .detailhead h2{font-size:13px}
+.collateral-demo-details .detailtabs{flex:none;height:30px}
+.collateral-demo-details .detailgrid{flex:none;grid-template-columns:repeat(5,minmax(0,1fr))}
+.collateral-demo-details .detailgrid>div{padding:6px 8px}
+.collateral-demo-details .detailgrid small{font-size:8px}
+.collateral-demo-details .detailgrid b{font-size:9px}
+.collateral-movement-wrap{display:flex;flex-direction:column;flex:1;min-height:0;margin-top:7px}
+.collateral-movement-wrap h3{font-size:10px;margin:0 0 5px}
+.collateral-movement-table{min-height:0;overflow:auto;border:1px solid #e3e6eb}
+.collateral-movement-table th{height:25px;font-size:8px}
+.collateral-movement-table td{height:25px;font-size:8px}
+.collateral-movement-table .pill{font-size:7px;padding:3px 5px}
+.collateral-allocation-type{display:flex;flex-direction:column;gap:6px;color:#555e69;font-size:10px}
+.collateral-allocation-type>div{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.collateral-allocation-type button{height:34px;border:1px solid #cbd0d8;border-radius:4px;background:#fff;color:#343b45;font-weight:650}
+.collateral-allocation-type button.active{border-color:#c8752c;background:#fff4e9;color:#9b571f}
+.collateral-drawer{width:min(430px,94vw)}
+.collateral-drawer form{gap:10px}
+.collateral-drawer .field{font-size:11px;gap:5px}
+.collateral-drawer .field input,.collateral-drawer .field select{height:35px;font-size:12px}
+.collateral-available{font-size:10px;color:#68717d;margin-top:-6px}
+.collateral-drawer .collateral-preview{gap:8px;padding:10px}
+.collateral-drawer .collateral-preview h3{font-size:11px}
+.collateral-drawer .collateral-preview>div:not(.request-loan-field){font-size:10px}
+.collateral-drawer .collateral-preview b{font-size:11px}
+.collateral-drawer .collateral-preview-total{padding-top:6px;border-top:1px solid #dfe2e7;font-weight:700}
+.collateral-drawer .hint{margin:0;padding:9px;font-size:10px}
+.collateral-drawer .full{height:37px}
+@media(max-height:820px){
+ .main:has(.collateral-demo-details) .tablebox{max-height:140px}
+ .collateral-demo-details .detailgrid>div{padding:4px 6px}
+ .collateral-movement-table th,.collateral-movement-table td{height:22px}
+ .collateral-drawer form{gap:8px}
+}
+@media(max-width:1050px){
+ .main:has(.collateral-demo-details){height:auto;min-height:100vh;overflow:visible}
+ .main:has(.collateral-demo-details)>main{display:block;overflow:visible}
+ .main:has(.collateral-demo-details) .stats{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:8px}
+ .collateral-demo-details{min-height:300px;overflow:visible}
+ .collateral-demo-details>section{height:auto;overflow:visible}
+ .collateral-demo-details .detailgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .collateral-movement-wrap{min-height:130px}
+}
