@@ -53,7 +53,7 @@ export const demoRows={
 'Margin calls':[{id:9101,loanId:7101,security:'RELIANCE',lender:'Apex Capital',requiredAmount:125000,fulfilledAmount:50000,outstandingAmount:75000,dueAt:'2026-11-12T14:00:00',status:'PARTIALLY_FULFILLED'}],
 'Funding & account':[
  {id:301,transactionId:'TXN-2026-301',date:'2026-11-12',type:'DEPOSIT',reference:'FUND-REQ-109',credit:250000,debit:0,balance:15250000,status:'PENDING'},
- {id:302,transactionId:'TXN-2026-302',date:'2026-11-11',type:'WITHDRAWAL',reference:'WD-204',credit:0,debit:75000,balance:15250000,status:'SETTLED'}
+ {id:302,transactionId:'TXN-2026-302',date:'2026-11-11',type:'WITHDRAWAL',reference:'WD-204',credit:0,debit:75000,balance:15325000,status:'SETTLED'}
 ],
 'Fees & rebates':[
  {id:4101,loanId:7101,security:'RELIANCE',feeAmount:42850,periodEnd:'2026-11-11',status:'DUE',recordType:'FEE'},
