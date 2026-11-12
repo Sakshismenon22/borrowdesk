@@ -575,3 +575,6 @@
  .fee-bill-detail-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
  .fee-bill-overview{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+.fee-bill-toolbar{display:flex;justify-content:flex-end;gap:5px;flex:none;margin:0 0 5px}
+.fee-bill-toolbar button{height:23px;padding:0 8px;border:1px solid #d5dae1;border-radius:4px;background:#fff;font-size:9px;font-weight:600}
