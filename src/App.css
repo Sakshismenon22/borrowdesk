@@ -184,3 +184,7 @@
 
 .detailtabs>button{height:100%;display:flex;align-items:center;padding:0;border:0;border-bottom:3px solid transparent;background:transparent;color:#555d68;font:inherit;cursor:pointer}
 .detailtabs>button.active{border-bottom-color:#c8752c;color:#252a32;font-weight:700}
+
+/* Demo Collateral movement-history table: improve value readability */
+.collateral-demo-details .collateral-movement-table tbody td{font-size:12px;line-height:1.45}
+.collateral-demo-details .collateral-movement-table tbody td .pill{font-size:10px}
