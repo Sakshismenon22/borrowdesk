@@ -1311,3 +1311,24 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
  .funding-pending-note{margin:6px 7px 6px 0;padding:7px;font-size:8px}
  .funding-demo-statusbar{height:17px;min-height:17px}
 }
+
+
+/* Funding & account demo: white page heading, independent of global dark top bar. */
+.main .funding-demo-heading{height:43px;min-height:43px;padding:0;background:#fff;color:#29313b;display:flex;align-items:center;justify-content:space-between;border:0;flex:none}
+.main .funding-demo-heading h1{color:#202832;font-size:19px;line-height:1.15}
+.main .funding-demo-heading p{color:#687381;font-size:10px}
+.main .funding-demo-heading .funding-export{height:28px;padding:0 11px;border:1px solid #d2d7de;border-radius:4px;background:#fff;color:#35404c;font-size:10px;font-weight:650}
+.funding-transaction-detail{width:100%;box-sizing:border-box}
+.funding-detail-content{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(120px,.9fr);align-items:stretch;flex:1 1 auto;min-height:0;overflow:hidden}
+.funding-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(34px,auto);align-content:start;gap:7px 16px;padding:9px 11px;overflow:hidden}
+.funding-detail-grid>div{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;padding:0 0 5px;border-bottom:1px solid #e6e9ed}
+.funding-detail-grid small{font-size:8px;color:#737e8b}
+.funding-detail-grid b{font-size:9px;color:#29323d;overflow-wrap:anywhere}
+.funding-pending-note{align-self:stretch;display:flex;align-items:center;margin:9px 9px 9px 0;padding:10px;border-left:1px solid #e1e5e9;border-radius:3px;background:#f2f4f7;color:#5c6673;font-size:9px;line-height:1.45}
+@media(max-height:760px){
+ .main .funding-demo-heading{height:38px;min-height:38px}
+ .main .funding-demo-heading h1{font-size:17px}
+ .funding-detail-content{grid-template-columns:minmax(0,2.2fr) minmax(110px,.9fr)}
+ .funding-detail-grid{grid-auto-rows:minmax(28px,auto);gap:5px 12px;padding:6px 8px}
+ .funding-pending-note{margin:6px 7px 6px 0;padding:7px;font-size:8px}
+}
