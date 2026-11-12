@@ -45,7 +45,7 @@ The UI connects to the existing borrower APIs for locate requests, reservations,
 
 The top-bar **Live data / Demo data** selector changes the source used by the workspace.
 
-- **Live data** loads the selected organization's records from the borrower and lender Spring Boot services. Trading searches the borrower security master, reads the organization watchlist, chart history, orders and trades, and submits orders to `POST /api/v1/organizations/{org}/orders`.
+- **Live data** loads the selected organization's records from the borrower and lender Spring Boot services. Trading searches the borrower security master, reads the organization watchlist, loads historical OHLCV candles directly from the market-data service at `/api/v1/security-data/history?symbol={symbol}&exchange={exchange}`, and reads orders and trades. The chart uses TradingView Lightweight Charts with client-side timeframe aggregation and a volume histogram. Orders are submitted to `POST /api/v1/organizations/{org}/orders`.
 - **Demo data** uses the frontend fixtures in `src/demoData.js` for sample dashboard, borrowing, collateral, account, agreement and trading records. Demo order/watchlist actions stay local and never call transaction APIs.
 
 ## Trading workspace
