@@ -56,3 +56,8 @@
 .request-loan-actions button.primary{background:#bd6b25;color:#fff;border-color:#bd6b25}
 .request-loan-actions button:disabled{opacity:.55;cursor:not-allowed}
 @media(max-width:900px){.reservation-demo-details{grid-template-columns:minmax(0,1fr)}}
+
+/* Demo-only expired reservation guard */
+.reservation-expired-notice{padding:16px;border:1px solid #f0d7b7;border-radius:6px;background:#fff7eb;color:#76512a}
+.reservation-expired-notice h3{margin:0 0 7px;font-size:13px;color:#8b4f19}
+.reservation-expired-notice p{margin:0;font-size:11px;line-height:1.5}
