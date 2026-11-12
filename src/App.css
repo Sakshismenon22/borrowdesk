@@ -578,3 +578,12 @@
 
 .fee-bill-toolbar{display:flex;justify-content:flex-end;gap:5px;flex:none;margin:0 0 5px}
 .fee-bill-toolbar button{height:23px;padding:0 8px;border:1px solid #d5dae1;border-radius:4px;background:#fff;font-size:9px;font-weight:600}
+
+/* Fees demo: the bill summary and actions share one compact header row */
+.fees-demo-details .detailhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:none;margin:0 0 6px}
+.fees-demo-details .detailhead>div{display:flex;align-items:center;gap:9px;min-width:0;flex:1}
+.fees-demo-details .detailhead h2{font-size:12px;margin:0;white-space:nowrap}
+.fees-demo-details .detailhead small{white-space:nowrap;font-size:8px;color:#747d89}
+.fees-demo-details .fee-bill-toolbar{margin:0 0 0 auto;justify-content:flex-end}
+.fees-demo-details .detailtabs{display:none}
+.fees-demo-details .fee-bill-detail-grid{margin-top:0}
