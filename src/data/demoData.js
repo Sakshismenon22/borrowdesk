@@ -39,7 +39,14 @@ export const demoRows={
  make(2402,'INFY','Meridian Securities',1200,'APPROVED',{approvedQuantity:1000,agreement:'MSLA-2026-008',expiresAt:'2026-11-12T16:00:00'}),
  make(2403,'HDFCBANK','Northstar Markets',3000,'REJECTED',{agreement:'MSLA-2026-014'})
 ],
-'Reservations':[{id:5101,locateId:2402,security:'INFY',lender:'Meridian Securities',reservedQuantity:1000,remainingQuantity:1000,status:'ACTIVE',expiresAt:'2026-11-12T16:00:00'}],
+'Reservations':[
+ {id:5101,locateId:2402,mslaId:'MSLA-2026-0017',security:'INFY',lender:'Meridian Securities',reservedQuantity:10000,remainingQuantity:10000,status:'CONFIRMED',expiresAt:'2026-11-12T15:30:00'},
+ {id:5102,locateId:2404,mslaId:'MSLA-2026-0017',security:'RELIANCE',lender:'Alpha Asset Mgmt',reservedQuantity:25000,remainingQuantity:25000,status:'CONFIRMED',expiresAt:'2026-11-12T16:00:00'},
+ {id:5103,locateId:2405,mslaId:'MSLA-2026-0017',security:'ICICIBANK',lender:'Alpha Asset Mgmt',reservedQuantity:10000,remainingQuantity:10000,status:'REQUESTED',expiresAt:'2026-11-12T17:00:00'},
+ {id:5104,locateId:2406,mslaId:'MSLA-2026-0008',security:'TCS',lender:'Meridian Securities',reservedQuantity:8000,remainingQuantity:4000,status:'PARTIALLY_USED',expiresAt:'2026-11-12T15:45:00'},
+ {id:5105,locateId:2407,mslaId:'MSLA-2026-0014',security:'HDFCBANK',lender:'Northstar Markets',reservedQuantity:30000,remainingQuantity:30000,status:'CONFIRMED',expiresAt:'2026-11-13T11:00:00'},
+ {id:5106,locateId:2408,mslaId:'MSLA-2026-0008',security:'SBIN',lender:'Meridian Securities',reservedQuantity:12000,remainingQuantity:12000,status:'EXPIRED',expiresAt:'2026-11-11T15:30:00'}
+ ],
 'Active loans':[
  {id:7101,security:'RELIANCE',lender:'Apex Capital',quantity:2500,outstandingQuantity:2500,marketValue:3630875,status:'ACTIVE',agreement:'MSLA-2026-014'},
  {id:7102,security:'INFY',lender:'Meridian Securities',quantity:1000,outstandingQuantity:800,marketValue:1426120,status:'ACTIVE',agreement:'MSLA-2026-008'}
