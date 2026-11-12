@@ -1332,3 +1332,15 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
  .funding-detail-grid{grid-auto-rows:minmax(28px,auto);gap:5px 12px;padding:6px 8px}
  .funding-pending-note{margin:6px 7px 6px 0;padding:7px;font-size:8px}
 }
+
+
+/* Demo-only posting summary shown after a funding transaction is confirmed. */
+.funding-confirmed-summary{align-self:stretch;display:flex;flex-direction:column;justify-content:center;gap:9px;margin:9px 9px 9px 0;padding:10px;border-left:1px solid #dce9df;border-radius:3px;background:#f2f7f3;color:#34483a;min-width:0;overflow:hidden}
+.funding-confirmed-title{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-bottom:5px;border-bottom:1px solid #dce9df}
+.funding-confirmed-title>span{display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#dcefe2;color:#287044;font-size:11px;font-weight:800}
+.funding-confirmed-title>b{font-size:9px;color:#2e6841;margin-right:auto}
+.funding-confirmed-title .funding-pill{font-style:normal}
+.funding-confirmed-summary>div:not(.funding-confirmed-title){display:flex;flex-direction:column;gap:2px;min-width:0}
+.funding-confirmed-summary small{font-size:8px;color:#6d7d70}
+.funding-confirmed-summary>div>b{font-size:9px;color:#293d30;overflow-wrap:anywhere}
+@media(max-height:760px){.funding-confirmed-summary{gap:6px;margin:6px 7px 6px 0;padding:7px}.funding-confirmed-title{padding-bottom:4px}}
