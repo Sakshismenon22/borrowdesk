@@ -425,3 +425,13 @@
  .main:has(.funding-ledger-totals) .details{width:100%;max-width:100%}
  .main:has(.funding-ledger-totals) .details>aside{position:static;width:100%;min-height:0;border-top:1px solid #dfe2e7}
 }
+
+/* Demo Funding & account request drawer */
+.funding-request-drawer .formtabs{display:flex;gap:8px;border-bottom:1px solid #e3e6eb;padding-bottom:8px}
+.funding-request-drawer .formtabs button{flex:1;height:38px;border:1px solid #d5d9df;border-radius:5px;background:#fff;color:#4d5662;font-weight:600}
+.funding-request-drawer .formtabs button.active{border-color:#c8752c;background:#fbf0e5;color:#9d571e}
+.funding-request-drawer .field{display:flex;flex-direction:column;gap:7px;font-size:12px;color:#4f5864}
+.funding-request-drawer .field input,.funding-request-drawer .field textarea{width:100%;border:1px solid #cbd1d9;border-radius:5px;padding:10px 12px;font:inherit;color:#252a32;background:#fff}
+.funding-request-drawer .field input{height:42px}
+.funding-request-drawer .field textarea{resize:vertical;min-height:92px}
+.funding-drawer-note{padding:12px;background:#f1f3f6;border-radius:5px;color:#59616d;font-size:11px;line-height:1.5}
