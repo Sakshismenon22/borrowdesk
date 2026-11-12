@@ -15,3 +15,21 @@
 
 
 .lightweight-chart-wrap{position:relative;width:100%;height:210px;min-height:210px;margin-top:4px}.lightweight-chart{width:100%;height:210px}.chart-overlay{position:absolute;inset:0;display:grid;place-items:center;color:#78818d;font-size:10px;pointer-events:none;background:rgba(255,255,255,.72)}
+
+/* Demo-only Locate Requests refinements */
+.locate-demo-details{grid-template-columns:minmax(0,1fr);min-height:230px}
+.locate-demo-details>section{width:100%}
+.locate-search{max-width:230px;min-width:150px;flex:0 1 230px}
+.stats:has(>div:nth-child(6)){grid-template-columns:repeat(6,minmax(0,1fr))}
+.locate-reserve-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 4px;margin-top:8px;border-top:1px solid #e5e8ed;font-size:11px;color:#68717d}
+.drawer-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(20,24,30,.28);display:flex;justify-content:flex-end}
+.locate-drawer{height:100%;width:min(470px,94vw);background:#fff;box-shadow:-8px 0 28px rgba(20,24,30,.16);padding:18px 20px;overflow:auto}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:15px;margin-bottom:18px;border-bottom:1px solid #e3e6eb}
+.drawer-head h2{font-size:19px;margin:0}
+.drawer-head button{border:0;background:transparent;font-size:25px;color:#5e6671}
+.locate-drawer form{display:flex;flex-direction:column;gap:15px}
+.locate-drawer .field{font-size:12px;gap:7px}
+.locate-drawer .field input,.locate-drawer .field select{height:43px;font-size:13px;padding:0 12px}
+.locate-drawer .hint{background:#fbf2e3;color:#75582f;font-size:12px;padding:12px}
+.locate-drawer .full{height:42px}
+@media(max-width:760px){.stats:has(>div:nth-child(6)){grid-template-columns:repeat(2,minmax(0,1fr))}.locate-reserve-row{align-items:flex-start;flex-direction:column}.locate-search{max-width:none;flex:1 1 100%}}
