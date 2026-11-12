@@ -181,3 +181,6 @@
  .collateral-demo-details .detailgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
  .collateral-movement-wrap{min-height:130px}
 }
+
+.detailtabs>button{height:100%;display:flex;align-items:center;padding:0;border:0;border-bottom:3px solid transparent;background:transparent;color:#555d68;font:inherit;cursor:pointer}
+.detailtabs>button.active{border-bottom-color:#c8752c;color:#252a32;font-weight:700}
