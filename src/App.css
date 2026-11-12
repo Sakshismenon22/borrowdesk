@@ -587,3 +587,85 @@
 .fees-demo-details .fee-bill-toolbar{margin:0 0 0 auto;justify-content:flex-end}
 .fees-demo-details .detailtabs{display:none}
 .fees-demo-details .fee-bill-detail-grid{margin-top:0}
+
+
+/* Demo Fees & rebates: explicitly render accruals and fee payment as two
+   full-height sibling columns beneath the bills table. */
+.fees-demo-details .fee-bill-detail-grid{
+  display:grid !important;
+  grid-template-columns:minmax(0,1.55fr) minmax(320px,1fr) !important;
+  grid-template-rows:minmax(0,1fr);
+  align-items:stretch;
+  width:100%;
+  height:100%;
+  min-width:0;
+  min-height:0;
+  flex:1 1 0;
+  gap:10px;
+  overflow:hidden;
+}
+.fees-demo-details .fee-bill-left{
+  grid-column:1;
+  grid-row:1;
+  width:100%;
+  min-width:0;
+  min-height:0;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border:1px solid #e1e5ea;
+  border-radius:5px;
+  padding:8px;
+  background:#fff;
+}
+.fees-demo-details .fee-bill-right{
+  grid-column:2;
+  grid-row:1;
+  width:100%;
+  min-width:0;
+  min-height:0;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.fees-demo-details .fee-bill-left .fee-accrual-table{
+  flex:1 1 0;
+  min-height:0;
+  width:100%;
+  overflow:auto;
+}
+.fees-demo-details .fee-bill-right .fee-payment-card{
+  flex:none;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  padding:10px;
+  background:#fff;
+}
+.fees-demo-details .fee-bill-right .fee-payment-card label{
+  width:100%;
+}
+.fees-demo-details .fee-bill-right .fee-rebate-card{
+  flex:1 1 0;
+  min-height:0;
+  width:100%;
+  overflow:auto;
+  background:#fff;
+}
+@media(max-width:900px){
+  .fees-demo-details .fee-bill-detail-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+    grid-template-rows:minmax(240px,1fr) auto;
+    overflow:auto;
+  }
+  .fees-demo-details .fee-bill-left,
+  .fees-demo-details .fee-bill-right{
+    grid-column:1;
+    height:auto;
+  }
+  .fees-demo-details .fee-bill-left{grid-row:1;min-height:240px}
+  .fees-demo-details .fee-bill-right{grid-row:2}
+}
