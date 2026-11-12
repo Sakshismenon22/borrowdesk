@@ -1288,3 +1288,26 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
  .funding-filterbar{overflow-x:auto}
  .funding-demo-stats>div{padding:0 7px}.funding-demo-stats span{font-size:9px}
 }
+
+
+/* Reference-aligned lower transaction panel and application status strip. */
+.funding-detail-heading{height:34px;min-height:34px}
+.funding-detail-heading h2{font-size:12px;font-weight:750}
+.funding-admin-action{display:flex;align-items:center;gap:9px}
+.funding-admin-action>span{font-size:8px;color:#67717e}
+.funding-detail-content{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(130px,.75fr);flex:1;min-height:0;overflow:hidden}
+.funding-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(30px,auto);align-content:start;gap:6px 13px;padding:8px 10px;overflow:hidden}
+.funding-detail-grid>div{padding-bottom:3px;border-bottom:1px solid #e6e9ed}
+.funding-detail-grid small{font-size:8px}
+.funding-detail-grid b{font-size:9px}
+.funding-pending-note{align-self:stretch;display:flex;align-items:center;margin:8px 9px 8px 0;padding:9px 10px;border-left:1px solid #e1e5e9;border-radius:3px;background:#f2f4f7;color:#5c6673;font-size:9px;line-height:1.45}
+.funding-demo-statusbar{height:19px;min-height:19px;display:flex;align-items:center;gap:17px;padding:0 8px;border-top:1px solid #e1e5e9;background:#fff;color:#637080;font-size:8px;flex:none}
+.funding-demo-statusbar span:first-child,.funding-demo-statusbar span:nth-child(2){color:#4e875c}
+.funding-account-demo-shell>.main>main{padding-bottom:0}
+.funding-demo-layout{min-height:0}
+@media(max-height:760px){
+ .funding-detail-heading{height:30px;min-height:30px}
+ .funding-detail-grid{grid-auto-rows:minmax(26px,auto);gap:4px 10px;padding:6px 8px}
+ .funding-pending-note{margin:6px 7px 6px 0;padding:7px;font-size:8px}
+ .funding-demo-statusbar{height:17px;min-height:17px}
+}
