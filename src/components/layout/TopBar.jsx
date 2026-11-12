@@ -1,0 +1,3 @@
+export default function TopBar({org,search,onSearchChange,mode,onModeChange,onChangeOrganization}) {
+ return (<header><button onClick={onChangeOrganization}>Niranjan Securities Pvt Ltd　⌄</button><i/><div className="global">⌕ <input placeholder="Search securities, loans, counterparties, agreements..." value={search} onChange={e=>onSearchChange(e.target.value)}/></div><label className="data-mode">Data <select value={mode} onChange={e=>onModeChange(e.target.value)}><option value="LIVE">Live data</option><option value="DEMO">Demo data</option></select></label><span>♧　12 Nov 2026 · IST</span><b className="user">●</b></header>)
+}
