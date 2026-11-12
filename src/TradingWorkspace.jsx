@@ -1,5 +1,5 @@
 import {useEffect,useMemo,useState} from 'react'
-import {demoSecurities,demoWatchlist} from './demoData'
+import {demoAccount,demoSecurities,demoWatchlist} from './demoData'
 
 const unwrap=x=>x?.data??x
 const rows=x=>{const d=unwrap(x);return Array.isArray(d)?d:Array.isArray(d?.content)?d.content:Array.isArray(d?.items)?d.items:[]}
@@ -8,8 +8,8 @@ const money=x=>'₹'+n(x).toLocaleString('en-IN',{minimumFractionDigits:2,maximu
 const api=async(base,path,method='GET',body)=>{const r=await fetch(base+path,{method,headers:{'Content-Type':'application/json'},...(body===undefined?{}:{body:JSON.stringify(body)})});const t=await r.text();let j;try{j=t?JSON.parse(t):null}catch{j=t}if(!r.ok)throw Error(j?.message||j?.detail||'HTTP '+r.status);return j}
 const security=x=>({...x,id:x?.id??x?.securityId,symbol:x?.symbol??x?.ticker??'—',name:x?.name??x?.securityName??x?.companyName??x?.symbol??'Unknown security',isin:x?.isin??x?.isinCode,exchange:x?.exchange??'NSE',price:n(x?.price??x?.lastPrice??x?.close),change:n(x?.change??x?.priceChange),changePercent:n(x?.changePercent??x?.changePct),volume:x?.volume??x?.tradedVolume??'—',borrowedAvailable:x?.borrowedAvailable??x?.availableQuantity??'—'})
 const candle=x=>({open:n(x.open??x.o??x.openPrice??x.open_price),high:n(x.high??x.h??x.highPrice??x.high_price),low:n(x.low??x.l??x.lowPrice??x.low_price),close:n(x.close??x.c??x.closePrice??x.close_price),volume:n(x.volume??x.v??0),label:x.label??x.time??x.timestamp??''})
-const demoCash=2500000
-const demoHoldings=[{symbol:'INFY',quantity:2000,source:'Owned'},{symbol:'RELIANCE',quantity:10000,source:'Settled borrowed'}]
+const demoCash=demoAccount.availableCash
+const demoHoldings=demoAccount.positions
 function makeDemoCandles(p){return Array.from({length:56},(_,i)=>{const drift=Math.sin(i*.31)*.003+Math.cos(i*.11)*.002;const open=p*(1+drift+Math.sin(i*.83)*.0018);const close=p*(1+drift+Math.sin((i+1)*.83)*.0021);return {open,close,high:Math.max(open,close)*1.002,low:Math.min(open,close)*.998,volume:3500+Math.round(2600*Math.abs(Math.sin(i*.42))),label:'09:'+String(15+Math.floor(i/4)*5).padStart(2,'0')}})}
 export default function TradingWorkspace({mode,org,borrowerApi}){
  const [universe,U]=useState([]),[watch,W]=useState([]),[query,Q]=useState(''),[selected,S]=useState(null),[candles,K]=useState([]),[interval,I]=useState('5m'),[side,Side]=useState('BUY'),[type,Type]=useState('MARKET'),[source,Source]=useState('OWNED'),[qty,Qty]=useState('1000'),[limit,Limit]=useState(''),[orders,O]=useState([]),[trades,T]=useState([]),[cash,Cash]=useState(mode==='DEMO'?demoCash:0),[holdings,H]=useState(mode==='DEMO'?demoHoldings:[]),[tab,Tab]=useState('Open orders'),[error,E]=useState(''),[toast,Toast]=useState(''),[busy,B]=useState(false),[review,Review]=useState(true)
