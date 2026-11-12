@@ -4,6 +4,7 @@ import '../App.css'
 import TradingWorkspace from '../components/trading/TradingWorkspace'
 import {demoAccount,demoDashboard,demoRows,demoResource,demoSecurities} from '../data/demoData'
 import {API_BASES} from '../services/apiConfig'
+import {api} from '../services/apiClient'
 import {borrowerRequest} from '../services/borrowerService'
 import Sidebar from '../components/layout/Sidebar'
 import TopBar from '../components/layout/TopBar'
@@ -50,7 +51,7 @@ export default function WorkspacePage({page}){
  const id=x=>x?.id??x?.locateId??x?.reservationId??x?.loanId??x?.callId??x?.recallId??x?.feeId
  const selectRecord=async row=>{S(row);try{if(page==='Active loans'||page==='Agreements'){const detail=await borrowerRequest(B,base+'/'+(page==='Active loans'?'loans':'agreements')+'/'+id(row));S(data(detail)||row)}}catch(e){E('Unable to load record details: '+e.message)}}
  const columns=useMemo(()=>{if(!rows[0])return[];let prefs={'Locate requests':['id','security','counterparty','requestedQuantity','approvedQuantity','agreement','expiresAt','status'],'Reservations':['id','locateId','security','lender','reservedQuantity','remainingQuantity','expiresAt','status'],'Active loans':['id','security','lender','quantity','outstandingQuantity','marketValue','status'],'Margin calls':['id','loanId','security','lender','requiredAmount','fulfilledAmount','dueAt','status'],'Agreements':['id','number','lender','effectiveDate','expiryDate','creditLimit','feeRate','rebateRate','status'],'Funding & account':['id','transactionId','date','type','reference','credit','debit','balance','status']}[page]||[];let keys=Object.keys(rows[0]).filter(k=>typeof rows[0][k]!=='object'||rows[0][k]===null);return (prefs.filter(k=>keys.includes(k)).length?prefs.filter(k=>keys.includes(k)):keys).slice(0,9)},[rows,page])
- const run=async(label,baseUrl,url,body,headers={})=>{if(mode==='DEMO'){Toast(label+' recorded in demo mode only');F({});return}try{await api(baseUrl,url,'POST',body,headers);Toast(label+' submitted');F({});await load()}catch(e){E(e.message)}}
+ const run=async(label,baseUrl,url,body,headers={})=>{if(mode==='DEMO'){Toast(label+' recorded in demo mode only');F({});return}try{await borrowerRequest(baseUrl,url,'POST',body,headers);Toast(label+' submitted');F({});await load()}catch(e){E(e.message)}}
  const move=p=>{navigate(cfg[p][0]);T(cfg[p][2][0]||'');R([]);S(null);Q('');Status('All status');C('');F({})}
  const submit=e=>{e.preventDefault();let f=form
   if(page==='Locate requests'&&f.workflow==='reserve')run('Reservation',B,base+'/locates/'+id(picked)+'/reserve',{quantity:+f.quantity})
