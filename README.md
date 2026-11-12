@@ -29,7 +29,7 @@ The frontend defaults to organization ID `1`, matching the local demo configurat
 - `VITE_MARKET_API` – market data service URL
 - `VITE_ORG_ID` – initial organization ID
 
-See `.env.example` for defaults. The app uses the existing `/api/v1/organizations/{org}` API routes. It does not introduce backend endpoints or modify the backend repository.
+See `.env.example` for defaults. The app uses the existing `/api/v1/organizations/{org}` API routes. Trading uses the market-data-service security-master, current-price and historical-candle endpoints. The current-price GET endpoint is exposed by the companion backend repository.
 
 ## Workflows
 
@@ -45,7 +45,7 @@ The UI connects to the existing borrower APIs for locate requests, reservations,
 
 The top-bar **Live data / Demo data** selector changes the source used by the workspace.
 
-- **Live data** loads the selected organization's records from the borrower and lender Spring Boot services. Trading searches the borrower security master, reads the organization watchlist, loads historical OHLCV candles directly from the market-data service at `/api/v1/security-data/history?symbol={symbol}&exchange={exchange}`, and reads orders and trades. The chart uses TradingView Lightweight Charts with client-side timeframe aggregation and a volume histogram. Orders are submitted to `POST /api/v1/organizations/{org}/orders`.
+- **Live data** loads the selected organization's records from the borrower and lender Spring Boot services. Trading loads the displayed security universe from market-data-service `/api/v1/security-master/get-all-securities`, overlays prices/OHLCV from `/api/v1/securities-current-price/get-all-securities-current-prices`, and loads historical OHLCV candles from `/api/v1/security-data/history?symbol={symbol}&exchange={exchange}`. The borrower security list is used only to map market symbols to borrower IDs for watchlist and order operations; its prices are not displayed. The Trading screen alone uses TradingView Lightweight Charts with client-side timeframe aggregation and a volume histogram. Orders are submitted to `POST /api/v1/organizations/{org}/orders`.
 - **Demo data** uses the frontend fixtures in `src/demoData.js` for sample dashboard, borrowing, collateral, account, agreement and trading records. Demo order/watchlist actions stay local and never call transaction APIs.
 
 ## Trading workspace
