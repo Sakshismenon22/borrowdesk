@@ -52,8 +52,29 @@ export const demoRows={
  {id:7102,security:'INFY',lender:'Meridian Securities',quantity:1000,outstandingQuantity:800,marketValue:1426120,status:'ACTIVE',agreement:'MSLA-2026-008'}
 ],
 'Collateral':[
- {id:8101,loanId:7101,assetType:'CASH',cashAmount:1900000,marketValue:1900000,status:'PLEDGED'},
- {id:8102,loanId:7102,assetType:'SECURITY',security:'TCS',quantity:500,marketValue:1945250,status:'PLEDGED'}
+ {id:8201,positionId:'CP-000248',loanId:'LN-000248',security:'INFY',lender:'Apex Capital',assetType:'SECURITY',quantity:10000,haircut:0,marketValue:1837500,recognizedValue:1837500,cashAmount:0,status:'POSTED',createdAt:'2026-11-12T08:45:00+05:30'},
+ {id:8202,positionId:'CP-000249',loanId:'LN-000249',security:'TCS',lender:'Meridian Securities',assetType:'SECURITY',quantity:500,haircut:15,marketValue:536000,recognizedValue:455600,cashAmount:0,status:'PLEDGE_PENDING',createdAt:'2026-11-12T09:05:00+05:30'},
+ {id:8203,positionId:'CP-000250',loanId:'LN-000250',security:'Cash',lender:'Apex Capital',assetType:'CASH',quantity:0,haircut:0,marketValue:2500000,recognizedValue:2500000,cashAmount:2500000,status:'POSTED',createdAt:'2026-11-12T09:15:00+05:30'},
+ {id:8204,positionId:'CP-000251',loanId:'LN-000251',security:'RELIANCE',lender:'Northstar Markets',assetType:'SECURITY',quantity:800,haircut:20,marketValue:2670750,recognizedValue:2136600,cashAmount:0,status:'RELEASE_REQUESTED',createdAt:'2026-11-12T09:30:00+05:30'},
+ {id:8205,positionId:'CP-000252',loanId:'LN-000252',security:'Cash',lender:'Meridian Securities',assetType:'CASH',quantity:0,haircut:0,marketValue:750000,recognizedValue:750000,cashAmount:750000,status:'POSTED',createdAt:'2026-11-12T10:10:00+05:30'},
+ {id:8206,positionId:'CP-000253',loanId:'LN-000253',security:'SBIN',lender:'Apex Capital',assetType:'SECURITY',quantity:1000,haircut:12,marketValue:540000,recognizedValue:475200,cashAmount:0,status:'POSTED',createdAt:'2026-11-12T10:25:00+05:30'}
+],
+'Pledge requests':[
+ {id:'PR-001982',positionId:'CP-000248',loanId:'LN-000248',security:'Cash',lender:'Apex Capital',assetType:'CASH',cashAmount:1837500,quantity:0,haircut:0,recognizedValue:1837500,status:'REQUESTED',createdAt:'2026-11-12T08:40:00+05:30'},
+ {id:'PR-001983',positionId:'CP-000249',loanId:'LN-000249',security:'TCS',lender:'Meridian Securities',assetType:'SECURITY',cashAmount:0,quantity:500,haircut:15,recognizedValue:455600,status:'PLEDGE_PENDING',createdAt:'2026-11-12T09:05:00+05:30'},
+ {id:'PR-001984',positionId:'CP-000253',loanId:'LN-000253',security:'SBIN',lender:'Apex Capital',assetType:'SECURITY',cashAmount:0,quantity:1000,haircut:12,recognizedValue:475200,status:'POSTED',createdAt:'2026-11-12T10:25:00+05:30'}
+],
+'Release requests':[
+ {id:'RR-000431',positionId:'CP-000251',loanId:'LN-000251',security:'RELIANCE',lender:'Northstar Markets',assetType:'SECURITY',cashAmount:0,quantity:800,haircut:20,recognizedValue:2136600,status:'RELEASE_REQUESTED',createdAt:'2026-11-12T09:30:00+05:30'},
+ {id:'RR-000432',positionId:'CP-000250',loanId:'LN-000250',security:'Cash',lender:'Apex Capital',assetType:'CASH',cashAmount:480000,quantity:0,haircut:0,recognizedValue:480000,status:'PENDING',createdAt:'2026-11-12T10:45:00+05:30'}
+],
+'Collateral movement history':[
+ {id:'MV-009821',positionId:'CP-000248',loanId:'LN-000248',time:'2026-11-12T08:45:00+05:30',event:'Collateral posted',counterparty:'Apex Capital',assetType:'SECURITY',security:'INFY',quantity:10000,amount:0,status:'POSTED'},
+ {id:'MV-009822',positionId:'CP-000249',loanId:'LN-000249',time:'2026-11-12T09:05:00+05:30',event:'Pledge requested',counterparty:'Meridian Securities',assetType:'SECURITY',security:'TCS',quantity:500,amount:0,status:'PLEDGE PENDING'},
+ {id:'MV-009823',positionId:'CP-000250',loanId:'LN-000250',time:'2026-11-12T09:15:00+05:30',event:'Cash collateral posted',counterparty:'Apex Capital',assetType:'CASH',security:'Cash',quantity:0,amount:2500000,status:'POSTED'},
+ {id:'MV-009824',positionId:'CP-000251',loanId:'LN-000251',time:'2026-11-12T09:30:00+05:30',event:'Release requested',counterparty:'Northstar Markets',assetType:'SECURITY',security:'RELIANCE',quantity:800,amount:0,status:'RELEASE REQUESTED'},
+ {id:'MV-009825',positionId:'CP-000252',loanId:'LN-000252',time:'2026-11-12T10:10:00+05:30',event:'Cash collateral posted',counterparty:'Meridian Securities',assetType:'CASH',security:'Cash',quantity:0,amount:750000,status:'POSTED'},
+ {id:'MV-009826',positionId:'CP-000253',loanId:'LN-000253',time:'2026-11-12T10:25:00+05:30',event:'Security pledge confirmed',counterparty:'Apex Capital',assetType:'SECURITY',security:'SBIN',quantity:1000,amount:0,status:'POSTED'}
 ],
 'Margin calls':[{id:9101,loanId:7101,security:'RELIANCE',lender:'Apex Capital',requiredAmount:125000,fulfilledAmount:50000,outstandingAmount:75000,dueAt:'2026-11-12T14:00:00',status:'PARTIALLY_FULFILLED'}],
 'Funding & account':[
@@ -78,7 +99,7 @@ export function demoResource(page,tab){
  if(page==='Borrowing blotter')return demoRows['Active loans']
  if(page==='Funding & account')return tab==='Withdrawals'?demoRows['Funding & account'].filter(x=>x.type==='WITHDRAWAL'):tab==='Deposits'?demoRows['Funding & account'].filter(x=>x.type==='DEPOSIT'):demoRows['Funding & account']
  if(page==='Fees & rebates')return demoRows['Fees & rebates']
- if(page==='Collateral')return demoRows.Collateral
+ if(page==='Collateral')return tab==='Pledge requests'?demoRows['Pledge requests']:tab==='Release requests'?demoRows['Release requests']:tab==='Movement history'?demoRows['Collateral movement history']:demoRows.Collateral
  if(page==='Reports & audit')return demoRows['Reports & audit']
  if(page==='Returns & recalls')return demoRows['Returns & recalls']
  return demoRows[page]||[]
