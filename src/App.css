@@ -277,3 +277,27 @@
  .active-loan-detail-head{align-items:flex-start;flex-direction:column}
  .coverage-strip{flex-wrap:wrap;gap:5px;padding:6px}
 }
+
+
+/* Demo Margin Calls screen */
+.margin-call-warning{display:flex;align-items:center;min-height:28px;margin:0 0 7px;padding:0 10px;border:1px solid #f0d9ad;border-radius:4px;background:#fff3dc;color:#76521e;font-size:10px;font-weight:600}
+.margin-call-demo-details{min-height:220px}
+.margin-call-demo-details>section{min-width:0}
+.margin-call-demo-details .detailtabs{margin-bottom:7px}
+.margin-call-demo-details .detailtabs>button{font-size:11px}
+.margin-coverage-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.95fr);gap:10px;min-height:0}
+.margin-coverage-calculation,.margin-coverage-response{min-width:0;padding:8px;border:1px solid #e1e5ea;border-radius:4px;background:#fff}
+.margin-coverage-calculation h3,.margin-coverage-response h3{margin:0 0 7px;font-size:11px}
+.margin-coverage-calculation>div{display:flex;justify-content:space-between;gap:10px;min-height:22px;align-items:center;padding:3px 7px;border-bottom:1px solid #e9ebef;font-size:9px}
+.margin-coverage-calculation>div b{font-size:10px;white-space:nowrap}
+.margin-coverage-calculation>div.emphasis{background:#fff1df;font-weight:700}
+.margin-coverage-response form{display:flex;flex-direction:column;gap:6px}
+.margin-coverage-response label{display:flex;flex-direction:column;gap:3px;font-size:9px;color:#5e6672}
+.margin-coverage-response input,.margin-coverage-response select{height:26px;width:100%;padding:0 7px;border:1px solid #d1d6de;border-radius:4px;background:#fff;font-size:10px;color:#303640}
+.margin-coverage-response button{height:29px;font-size:10px}
+.margin-coverage-response small{font-size:8px;color:#6c7480;line-height:1.4}
+.margin-call-history{max-height:190px;overflow:auto;border:1px solid #e1e5ea;border-radius:4px}
+.margin-call-history table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:10px}
+.margin-call-history th{height:27px;background:#edf0f4;text-align:left;padding:0 8px}
+.margin-call-history td{height:27px;padding:0 8px;border-top:1px solid #e8eaee}
+@media(max-width:1000px){.margin-coverage-grid{grid-template-columns:1fr}}
