@@ -1012,3 +1012,151 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
   .agreement-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .agreement-eligibility-table,.agreement-credit-history{overflow:auto}
 }
+
+
+/* Demo Agreements detail panel aligned to the supplied reference. */
+.agreements-demo-details{
+  display:block!important;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin-top:8px;
+}
+.agreements-demo-details>section{
+  width:100%;
+  min-width:0;
+  padding:10px 12px 14px;
+}
+.agreements-demo-details .detailhead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:36px;
+  padding-bottom:8px;
+  border-bottom:1px solid #dfe3e8;
+}
+.agreement-detail-title h2{
+  margin:0;
+  color:#252c35;
+  font-size:17px;
+  font-weight:700;
+}
+.agreement-detail-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex:none;
+}
+.agreement-detail-actions button{
+  height:30px;
+  padding:0 12px;
+  border:1px solid #cbd1d8;
+  border-radius:4px;
+  background:#fff;
+  color:#303844;
+  font-size:11px;
+  font-weight:600;
+}
+.agreement-locked{
+  padding:6px 10px;
+  border-radius:4px;
+  background:#e5f4e9;
+  color:#32754a;
+  font-size:10px;
+  font-weight:650;
+  white-space:nowrap;
+}
+.agreements-demo-details .detailtabs{
+  height:34px;
+  margin:0 0 12px;
+  gap:22px;
+}
+.agreements-demo-details .detailtabs button{
+  padding:0 2px;
+  font-size:11px;
+}
+.agreement-detail-content{
+  width:100%;
+  min-width:0;
+}
+.agreement-commercial-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
+  gap:20px;
+  width:100%;
+  min-width:0;
+}
+.agreement-commercial-terms,
+.agreement-commercial-collateral{
+  min-width:0;
+}
+.agreement-commercial-terms{
+  padding-right:18px;
+  border-right:1px solid #dfe3e8;
+}
+.agreement-commercial-terms h3,
+.agreement-commercial-collateral h3,
+.agreement-eligibility-table h3,
+.agreement-credit-history h3,
+.agreement-documents h3{
+  margin:0 0 8px;
+  color:#2b323c;
+  font-size:12px;
+  font-weight:700;
+}
+.agreement-term-row{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) minmax(110px,1.05fr);
+  align-items:center;
+  min-height:26px;
+  padding:3px 10px;
+  border-bottom:1px solid #e2e5e9;
+  font-size:11px;
+}
+.agreement-term-row span{color:#4c5663}
+.agreement-term-row b{color:#242b34;font-size:11px;font-weight:700}
+.agreement-commercial-collateral table,
+.agreement-eligibility-table table,
+.agreement-credit-history table,
+.agreement-documents table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:10.5px;
+}
+.agreement-commercial-collateral th,
+.agreement-commercial-collateral td,
+.agreement-eligibility-table th,.agreement-eligibility-table td,
+.agreement-credit-history th,.agreement-credit-history td,
+.agreement-documents th,.agreement-documents td{
+  padding:5px 10px;
+  border-bottom:1px solid #e2e5e9;
+  text-align:left;
+}
+.agreement-commercial-collateral th,
+.agreement-eligibility-table th,.agreement-credit-history th,.agreement-documents th{
+  background:#f0f2f5;
+  color:#3e4855;
+  font-weight:700;
+}
+.agreement-commercial-collateral td,
+.agreement-eligibility-table td,.agreement-credit-history td,.agreement-documents td{
+  color:#303844;
+}
+.agreement-commercial-collateral tbody tr:last-child td,
+.agreement-eligibility-table tbody tr:last-child td,
+.agreement-credit-history tbody tr:last-child td,
+.agreement-documents tbody tr:last-child td{border-bottom:0}
+.agreement-detail-content .agreement-detail-grid{
+  margin-bottom:12px;
+}
+.agreement-eligibility-table,.agreement-credit-history,.agreement-documents{
+  width:100%;
+  min-width:0;
+}
+@media(max-width:760px){
+  .agreement-commercial-grid{grid-template-columns:1fr;gap:12px}
+  .agreement-commercial-terms{padding:0 0 10px;border-right:0;border-bottom:1px solid #dfe3e8}
+  .agreement-detail-actions{gap:5px}
+  .agreement-locked{font-size:9px;padding:5px}
+}
