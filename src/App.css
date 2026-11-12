@@ -49,3 +49,10 @@
 .collateral-preview .request-loan-field{grid-template-columns:170px minmax(0,1fr)}
 .request-loan-form>.hint{margin:0;font-size:11px;color:#69727e}
 @media(max-width:760px){.request-loan-field{grid-template-columns:1fr;gap:5px}.request-loan-field span{white-space:normal}.collateral-preview .request-loan-field{grid-template-columns:1fr}}
+
+.reservation-demo-details{grid-template-columns:minmax(0,1fr) minmax(380px,1fr)}
+.request-loan-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.request-loan-actions button{height:38px;border:1px solid #cbd0d8;border-radius:5px;background:#fff;color:#303640;font-weight:650}
+.request-loan-actions button.primary{background:#bd6b25;color:#fff;border-color:#bd6b25}
+.request-loan-actions button:disabled{opacity:.55;cursor:not-allowed}
+@media(max-width:900px){.reservation-demo-details{grid-template-columns:minmax(0,1fr)}}
