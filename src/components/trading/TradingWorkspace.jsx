@@ -1,6 +1,7 @@
 import {useEffect,useMemo,useRef,useState} from 'react'
 import {createChart,CandlestickSeries,HistogramSeries} from 'lightweight-charts'
 import {demoAccount,demoSecurities,demoWatchlist} from '../../data/demoData'
+import {api} from '../../services/apiClient'
 import {borrowerRequest} from '../../services/borrowerService'
 import {getSecurityMaster,getCurrentPrices,getHistoricalCandles} from '../../services/marketDataService'
 
