@@ -446,3 +446,29 @@
 .trading-page{min-width:0}.trade-mode-note{font-size:10px;color:#66717e}.trade-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border:1px solid #e0e3e8;margin:12px 0}.trade-kpis>div{padding:11px 14px;border-right:1px solid #e0e3e8;display:flex;flex-direction:column;gap:5px}.trade-kpis>div:last-child{border:0}.trade-kpis small,.watch-head small{font-size:10px;color:#737b87}.trade-kpis b{font-size:16px}.trade-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;align-items:start}.trade-market,.order-ticket,.candle-panel,.orders-panel{background:white;border:1px solid #e0e3e8;min-width:0}.trade-market{padding:13px}.trade-section-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.trade-section-head h2,.trade-section-head h3,.watch-head h3,.ticket-title h2{font-size:14px;margin:0}.trade-section-head small,.ticket-title small{display:block;color:#78818d;font-size:10px;margin-top:4px}.trade-section-head>button,.watch-table button,.security-result>button,.candle-panel button,.orders-panel button{background:white;border:1px solid #d7dce3;border-radius:4px;padding:5px 8px;color:#46505c}.trade-search{height:38px;display:flex;align-items:center;gap:8px;padding:0 10px;margin:12px 0 0;border:1px solid #cbd0d8;border-radius:4px;font-size:17px;color:#78818d}.trade-search input{width:100%;border:0;outline:0;font-size:11px;color:#303640}.search-results{border:1px solid #e1e4e9;border-top:0;max-height:270px;overflow:auto}.security-result{display:flex;align-items:center;gap:12px;padding:9px 10px;border-bottom:1px solid #edf0f3;cursor:pointer}.security-result:hover,.security-result.selected{background:#fbf3eb}.security-main{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}.security-main b{font-size:11px}.security-main span{font-size:10px;color:#49515d;overflow:hidden;text-overflow:ellipsis}.security-main small{font-size:9px;color:#838b96}.security-result strong{font-size:11px;white-space:nowrap}.security-result>button{font-size:14px;min-width:28px}.watch-head{display:flex;align-items:center;justify-content:space-between;margin:17px 0 8px}.watch-table{overflow:auto;border:1px solid #e3e6eb}.watch-table table{min-width:620px}.watch-table td:first-child b,.watch-table td:first-child small{display:block}.watch-table td:first-child small{font-size:9px;color:#77808c;margin-top:3px}.watch-table td{height:42px}.watch-table button{margin-right:4px;padding:3px 7px}.positive{color:#24875b}.negative{color:#c34e4e}.order-ticket{padding:14px;position:sticky;top:12px}.ticket-title{display:flex;justify-content:space-between;align-items:center}.ticket-security{display:flex;flex-direction:column;gap:5px;padding:13px 0;border-bottom:1px solid #e5e8ed;margin-bottom:12px}.ticket-security>b{font-size:14px}.ticket-security>span{font-size:10px;color:#68717d}.ticket-security>strong{font-size:22px}.ticket-security>small{font-size:9px;color:#818995}.order-ticket form{display:flex;flex-direction:column;gap:10px}.side-switch{display:grid;grid-template-columns:1fr 1fr;gap:7px}.side-switch button{height:36px;border:1px solid #d4d9e0;border-radius:4px;background:#fff;font-weight:700}.side-switch .buy-active{background:#e2f2e8;border-color:#3b9a65;color:#237247}.side-switch .sell-active{background:#fae6e5;border-color:#d16b67;color:#a33c39}.order-ticket .field{font-size:10px}.order-ticket .field select,.order-ticket .field input{height:34px;border:1px solid #cbd0d8;border-radius:4px;padding:0 8px;background:white;color:#303640}.ticket-estimate{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid #e5e8ed;color:#6e7783;font-size:10px}.ticket-estimate b{color:#252a32;font-size:13px}.order-ticket .hint{margin:0}.order-ticket button:disabled{opacity:.5;cursor:not-allowed}.candle-panel,.orders-panel{margin-top:12px;padding:13px}.candle-svg{width:100%;height:auto;display:block;margin-top:8px}.orders-panel{overflow:hidden}.orders-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}.orders-split>div{min-width:0;overflow:auto}.orders-split>div>b{display:block;margin-bottom:6px;font-size:11px}.orders-split table{min-width:340px}.orders-split th{font-size:9px}.orders-split td{font-size:9px}
 @media(max-width:1100px){.trade-layout{grid-template-columns:minmax(0,1fr) 270px}.trade-kpis b{font-size:14px}}
 @media(max-width:760px){.trade-layout{grid-template-columns:1fr}.order-ticket{position:static}.trade-kpis{grid-template-columns:repeat(2,1fr)}.trade-kpis>div:nth-child(2){border-right:0}.trade-kpis>div:nth-child(-n+2){border-bottom:1px solid #e0e3e8}.orders-split{grid-template-columns:1fr}.data-mode{font-size:0}.data-mode select{font-size:9px;max-width:84px}.trade-mode-note{font-size:9px}}
+
+
+/* Demo Funding & account: remove the reserved workflow column from the detail card.
+   The request form is now a drawer, so the detail section can use the full width. */
+.main:has(.funding-detail-grid) .details{
+ width:100%;
+ max-width:100%;
+ grid-template-columns:minmax(0,1fr);
+}
+.main:has(.funding-detail-grid) .details>section{
+ width:100%;
+ min-width:0;
+}
+.main:has(.funding-detail-grid) .funding-detail-grid{
+ width:100%;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.main:has(.funding-movements-wrap) .details{
+ width:100%;
+ max-width:100%;
+ grid-template-columns:minmax(0,1fr);
+}
+.main:has(.funding-movements-wrap) .details>section{
+ width:100%;
+ min-width:0;
+}
