@@ -1,5 +1,5 @@
 import {useEffect,useMemo,useRef,useState} from 'react'
-import {createChart,CandlestickSeries} from 'lightweight-charts'
+import {createChart,CandlestickSeries,HistogramSeries} from 'lightweight-charts'
 import {demoAccount,demoSecurities,demoWatchlist} from './demoData'
 
 const unwrap=x=>x?.data??x
