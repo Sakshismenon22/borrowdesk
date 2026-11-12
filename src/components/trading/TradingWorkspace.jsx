@@ -67,10 +67,11 @@ export default function TradingWorkspace({mode,org,borrowerApi,marketApi}){
     <div className="watchlist-foot">{watch.length} securities</div>
    </section>
    <section className="market-panel">
-    <div className="trade-panel-head market-head"><b>Securities</b><label>Exchange <select><option>NSE</option><option>BSE</option><option>All</option></select></label><div className="market-search"><span>⌕</span><input value={query} onChange={e=>Q(e.target.value)} placeholder="Search symbol or company"/></div><button title="Refresh market data" onClick={refresh}>↻</button></div>
+    {!isDemo&&<><div className="trade-panel-head market-head"><b>Securities</b><label>Exchange <select><option>NSE</option><option>BSE</option><option>All</option></select></label><div className="market-search"><span>⌕</span><input value={query} onChange={e=>Q(e.target.value)} placeholder="Search symbol or company"/></div><button title="Refresh market data" onClick={refresh}>↻</button></div>
     <div className="securities-grid"><table><thead><tr><th>☆</th><th>Security</th><th>Last price (₹)</th><th>{isDemo?'Change %':'1m change %'}</th><th>Volume</th></tr></thead><tbody>{filtered.slice(0,30).map(x=><tr key={x.id} className={selected?.id===x.id?'chosen':''} onClick={()=>choose(x)}><td><button className="star-button" onClick={e=>{e.stopPropagation();toggleWatch(x)}}>{inWatch(x)?'★':'☆'}</button></td><td><b>{x.symbol} · {x.exchange}</b><small>{x.name} · {x.isin||'ISIN unavailable'}</small></td><td>{money(x.price)}</td><td className={x.changePercent>=0?'positive':'negative'}>{x.changePercent>0?'+':''}{x.changePercent.toFixed(2)}%</td><td>{x.volume??'—'}</td></tr>)}</tbody></table>{!filtered.length&&<div className="empty">No securities match your search.</div>}</div>
+    </>}
     <div className="chart-panel">
-     {selected?<><div className="chart-heading"><div><b>{selected.symbol} · {selected.exchange}</b><small>{selected.name}</small></div><div className="chart-price"><b>{money(selected.price)}</b><small className={isDemo?'positive':selected.change>=0?'positive':'negative'}>{isDemo?'Day change · ':'1m change · '}{selected.change>=0?'+':''}{money(Math.abs(selected.change))} ({selected.changePercent>=0?'+':''}{selected.changePercent.toFixed(2)}%)</small></div><span className="delayed-pill">Delayed / simulated</span><div className="intervals">{['1m','5m','15m','1h','1D'].map(x=><button key={x} className={interval===x?'selected':''} onClick={()=>I(x)}>{x}</button>)}</div><button className="icon-button" onClick={()=>loadChart(selected)}>↻</button></div><div className="ohlc-line">O {money(candles.at(-1)?.open||selected.price)}　H {money(candles.at(-1)?.high||selected.price)}　L {money(candles.at(-1)?.low||selected.price)}　C {money(candles.at(-1)?.close||selected.price)}　·　{isDemo?'Demo candles':'Market-data-service'}{chartLoading?' · Loading…':''}</div><LightweightCandleChart rows={candles} timezone={isDemo?'Asia/Kolkata':undefined}/></>:<div className="empty chart-empty">Select a security to view its candlestick chart and trade ticket.</div>}
+     {selected?<><div className="chart-heading"><div><b>{selected.symbol} · {selected.exchange}</b><small>{selected.name}</small></div><div className="chart-price"><b>{money(selected.price)}</b><small className={isDemo?'positive':selected.change>=0?'positive':'negative'}>{isDemo?'Day change · ':'1m change · '}{selected.change>=0?'+':''}{money(Math.abs(selected.change))} ({selected.changePercent>=0?'+':''}{selected.changePercent.toFixed(2)}%)</small></div><span className="delayed-pill">Delayed / simulated</span><div className="intervals">{['1m','5m','15m','1h','1D'].map(x=><button key={x} className={interval===x?'selected':''} onClick={()=>I(x)}>{x}</button>)}</div><button className="icon-button" onClick={()=>loadChart(selected)}>↻</button></div><div className="ohlc-line">O {money(candles.at(-1)?.open||selected.price)}　H {money(candles.at(-1)?.high||selected.price)}　L {money(candles.at(-1)?.low||selected.price)}　C {money(candles.at(-1)?.close||selected.price)}　·　{isDemo?'Demo candles':'Market-data-service'}{chartLoading?' · Loading…':''}</div><LightweightCandleChart rows={candles} timezone={isDemo?'Asia/Kolkata':undefined} fillHeight={isDemo}/></>:<div className="empty chart-empty">Select a security to view its candlestick chart and trade ticket.</div>}
     </div>
    </section>
    <aside className="order-ticket">
@@ -96,12 +97,12 @@ export default function TradingWorkspace({mode,org,borrowerApi,marketApi}){
   <div className="trade-statusbar"><span>● {isDemo?'Demo data loaded':'Borrower service '+(error?'needs attention':'connected')}</span><span>● Market data {busy?'loading':'available'}</span><span>● Paper execution</span><span>Last updated {new Date().toLocaleTimeString('en-IN')}</span></div>
  </div>
 }
-function LightweightCandleChart({rows,timezone}){
+function LightweightCandleChart({rows,timezone,fillHeight=false}){
  const host=useRef(null),chartRef=useRef(null),seriesRef=useRef(null),volumeRef=useRef(null)
  useEffect(()=>{
   if(!host.current)return
   const chart=createChart(host.current,{
-   autoSize:false,width:host.current.clientWidth,height:210,
+   autoSize:false,width:host.current.clientWidth,height:fillHeight?Math.max(150,host.current.clientHeight):210,
    layout:{background:{type:'solid',color:'#ffffff'},textColor:'#596270',attributionLogo:true},
    grid:{vertLines:{color:'#eef0f3'},horzLines:{color:'#eef0f3'}},
    rightPriceScale:{borderColor:'#e1e5ea'},
@@ -112,7 +113,7 @@ function LightweightCandleChart({rows,timezone}){
   const volume=chart.addSeries(HistogramSeries,{priceScaleId:'volume',priceFormat:{type:'volume'},lastValueVisible:false,priceLineVisible:false})
   chart.priceScale('volume').applyOptions({scaleMargins:{top:0.82,bottom:0}})
   chartRef.current=chart;seriesRef.current=series;volumeRef.current=volume
-  const observer=new ResizeObserver(entries=>{if(entries[0]&&chartRef.current)chartRef.current.applyOptions({width:entries[0].contentRect.width})})
+  const observer=new ResizeObserver(entries=>{if(entries[0]&&chartRef.current)chartRef.current.applyOptions({width:entries[0].contentRect.width,...(fillHeight?{height:Math.max(150,entries[0].contentRect.height)}:{})})})
   observer.observe(host.current)
   return()=>{observer.disconnect();chart.remove();chartRef.current=null;seriesRef.current=null;volumeRef.current=null}
  },[])
