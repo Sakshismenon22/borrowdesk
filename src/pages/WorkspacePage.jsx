@@ -4,10 +4,10 @@ import '../App.css'
 import TradingWorkspace from '../components/trading/TradingWorkspace'
 import {demoAccount,demoDashboard,demoRows,demoResource,demoSecurities} from '../data/demoData'
 import {API_BASES} from '../services/apiConfig'
-import {api} from '../services/apiClient'
+import {borrowerRequest} from '../services/borrowerService'
 import Sidebar from '../components/layout/Sidebar'
 import TopBar from '../components/layout/TopBar'
-const {borrower:B,lender:L,market:M,organization:O}=API_BASES
+const {borrower:B,market:M,organization:O}=API_BASES
 const cfg={
 'Trading':['/trading','Search securities, manage your watchlist and place market or limit orders',[]],
 'Borrowing blotter':['/dashboard','Monitor borrowing activity, locate decisions and settlement obligations',[]],
@@ -37,18 +37,18 @@ export default function WorkspacePage({page}){
   try{
    if(page==='Trading'){Busy(false);return}
    if(mode==='DEMO'){D(demoDashboard);A(demoAccount);const demo=demoResource(page,tab);R(demo);S(demo[0]||null);Busy(false);return}
-   if(page==='Borrowing blotter'){let [d,a,l]=await Promise.all([api(B,base+'/dashboard'),api(B,base+'/account'),api(B,base+'/loans?size=200')]);D(data(d)||{});A(data(a)||{});R(list(l));S(null)}
-   else if(page==='Funding & account'){let [a,d]=await Promise.all([api(B,base+'/account'),api(B,base+(tab==='Account ledger'?'/transactions':'/payments')+'?size=200')]);A(data(a)||{});let records=list(d);if(tab==='Withdrawals')records=records.filter(x=>/withdraw/i.test(String(x.type||x.paymentType||x.direction||'')));if(tab==='Deposits')records=records.filter(x=>!/withdraw/i.test(String(x.type||x.paymentType||x.direction||'')));R(records);S(records[0]||null)}
-   else{let resource=resources[tab]||path.slice(1);let d=await api(B,base+'/'+resource+'?size=200');R(list(d));S(list(d)[0]||null)}
+   if(page==='Borrowing blotter'){let [d,a,l]=await Promise.all([borrowerRequest(B,base+'/dashboard'),borrowerRequest(B,base+'/account'),borrowerRequest(B,base+'/loans?size=200')]);D(data(d)||{});A(data(a)||{});R(list(l));S(null)}
+   else if(page==='Funding & account'){let [a,d]=await Promise.all([borrowerRequest(B,base+'/account'),borrowerRequest(B,base+(tab==='Account ledger'?'/transactions':'/payments')+'?size=200')]);A(data(a)||{});let records=list(d);if(tab==='Withdrawals')records=records.filter(x=>/withdraw/i.test(String(x.type||x.paymentType||x.direction||'')));if(tab==='Deposits')records=records.filter(x=>!/withdraw/i.test(String(x.type||x.paymentType||x.direction||'')));R(records);S(records[0]||null)}
+   else{let resource=resources[tab]||path.slice(1);let d=await borrowerRequest(B,base+'/'+resource+'?size=200');R(list(d));S(list(d)[0]||null)}
   }catch(e){R([]);S(null);E(e.message+' — check the backend service and organization ID.')}
   finally{Busy(false)}
  },[page,tab,org,path,base,mode])
  useEffect(()=>{load()},[load])
- useEffect(()=>{if(mode==='DEMO'){Lenders([{id:1,name:'Apex Capital'},{id:2,name:'Meridian Securities'}]);Agreements(demoRows.Agreements);Securities(demoSecurities);return}if(page==='Agreements')api(B,base+'/lenders').then(x=>Lenders(list(x))).catch(e=>E('Unable to load lenders: '+e.message));if(page==='Locate requests'){Promise.all([api(B,base+'/agreements?size=200'),api(B,'/api/v1/securities')]).then(([a,b])=>{Agreements(list(a));Securities(list(b))}).catch(e=>E('Unable to load locate reference data: '+e.message))}},[page,base,mode])
+ useEffect(()=>{if(mode==='DEMO'){Lenders([{id:1,name:'Apex Capital'},{id:2,name:'Meridian Securities'}]);Agreements(demoRows.Agreements);Securities(demoSecurities);return}if(page==='Agreements')borrowerRequest(B,base+'/lenders').then(x=>Lenders(list(x))).catch(e=>E('Unable to load lenders: '+e.message));if(page==='Locate requests'){Promise.all([borrowerRequest(B,base+'/agreements?size=200'),borrowerRequest(B,'/api/v1/securities')]).then(([a,b])=>{Agreements(list(a));Securities(list(b))}).catch(e=>E('Unable to load locate reference data: '+e.message))}},[page,base,mode])
  useEffect(()=>{if(toast){let t=setTimeout(()=>Toast(''),3000);return()=>clearTimeout(t)}},[toast])
  const filtered=useMemo(()=>rows.filter(x=>Object.values(x).map(val).join(' ').toLowerCase().includes(search.toLowerCase())&&(status==='All status'||String(x.status||'').toLowerCase()===status.toLowerCase())&&(!counter||(x.counterparty||x.lender)===counter)),[rows,search,status,counter])
  const id=x=>x?.id??x?.locateId??x?.reservationId??x?.loanId??x?.callId??x?.recallId??x?.feeId
- const selectRecord=async row=>{S(row);try{if(page==='Active loans'||page==='Agreements'){const detail=await api(B,base+'/'+(page==='Active loans'?'loans':'agreements')+'/'+id(row));S(data(detail)||row)}}catch(e){E('Unable to load record details: '+e.message)}}
+ const selectRecord=async row=>{S(row);try{if(page==='Active loans'||page==='Agreements'){const detail=await borrowerRequest(B,base+'/'+(page==='Active loans'?'loans':'agreements')+'/'+id(row));S(data(detail)||row)}}catch(e){E('Unable to load record details: '+e.message)}}
  const columns=useMemo(()=>{if(!rows[0])return[];let prefs={'Locate requests':['id','security','counterparty','requestedQuantity','approvedQuantity','agreement','expiresAt','status'],'Reservations':['id','locateId','security','lender','reservedQuantity','remainingQuantity','expiresAt','status'],'Active loans':['id','security','lender','quantity','outstandingQuantity','marketValue','status'],'Margin calls':['id','loanId','security','lender','requiredAmount','fulfilledAmount','dueAt','status'],'Agreements':['id','number','lender','effectiveDate','expiryDate','creditLimit','feeRate','rebateRate','status'],'Funding & account':['id','transactionId','date','type','reference','credit','debit','balance','status']}[page]||[];let keys=Object.keys(rows[0]).filter(k=>typeof rows[0][k]!=='object'||rows[0][k]===null);return (prefs.filter(k=>keys.includes(k)).length?prefs.filter(k=>keys.includes(k)):keys).slice(0,9)},[rows,page])
  const run=async(label,baseUrl,url,body,headers={})=>{if(mode==='DEMO'){Toast(label+' recorded in demo mode only');F({});return}try{await api(baseUrl,url,'POST',body,headers);Toast(label+' submitted');F({});await load()}catch(e){E(e.message)}}
  const move=p=>{navigate(cfg[p][0]);T(cfg[p][2][0]||'');R([]);S(null);Q('');Status('All status');C('');F({})}
