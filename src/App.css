@@ -353,3 +353,19 @@
  .margin-call-demo-details>section{overflow:visible}
  .margin-call-demo-details .margin-coverage-grid{overflow:visible}
 }
+
+
+/* Demo Margin Calls: remove the unused details-grid column so both Coverage cards
+   can expand across the entire detail panel. */
+.details.margin-call-demo-details{
+ grid-template-columns:minmax(0,1fr);
+ width:100%;
+}
+.details.margin-call-demo-details>section{
+ width:100%;
+ min-width:0;
+}
+.margin-call-demo-details .margin-coverage-grid{
+ width:100%;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+}
