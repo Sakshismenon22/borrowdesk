@@ -472,3 +472,29 @@
  width:100%;
  min-width:0;
 }
+
+
+/* Demo Fees & rebates KPI strip and bill summary */
+.main .fees-stats{
+ display:grid;
+ grid-template-columns:repeat(6,minmax(0,1fr));
+ gap:0;
+}
+.main .fees-stats>div{min-width:0;padding:7px 10px;border-right:1px solid #e1e5ea}
+.main .fees-stats span{font-size:10px;white-space:normal;line-height:1.25}
+.main .fees-stats b{font-size:13px;white-space:normal;overflow-wrap:anywhere}
+.fee-bill-totals{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:0;
+ margin-top:6px;
+ padding:9px 12px;
+ border:1px solid #e1e5ea;
+ background:#f7f8fa;
+}
+.fee-bill-totals>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 12px;border-right:1px solid #e1e5ea}
+.fee-bill-totals>div:last-child{border-right:0}
+.fee-bill-totals span{font-size:11px;color:#68717d}
+.fee-bill-totals b{font-size:13px;color:#252a32;font-variant-numeric:tabular-nums}
+@media(max-width:1050px){.main .fees-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.main .fees-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.fee-bill-totals{grid-template-columns:1fr}.fee-bill-totals>div{padding:7px 2px;border-right:0;border-bottom:1px solid #e1e5ea}.fee-bill-totals>div:last-child{border-bottom:0}}
