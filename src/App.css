@@ -1160,3 +1160,49 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
   .agreement-detail-actions{gap:5px}
   .agreement-locked{font-size:9px;padding:5px}
 }
+
+/* Demo-only Reports & audit: fit the complete workspace in one viewport. */
+.reports-audit-shell{height:100vh;min-height:0;overflow:hidden}
+.reports-audit-shell>.side{height:100vh;overflow:hidden}
+.reports-audit-shell>.main{height:100vh;min-height:0;overflow:hidden}
+.reports-audit-shell main{height:calc(100vh - 50px);min-height:0;overflow:hidden;padding:10px 14px 0;display:flex;flex-direction:column}
+.reports-audit-shell .reports-audit-view{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.reports-audit-shell footer{display:none}
+.reports-audit-heading{display:flex;align-items:center;justify-content:space-between;min-height:48px;flex:none}
+.reports-audit-heading h1{margin:0;font-size:20px;color:#222a34}.reports-audit-heading p{margin:3px 0 0;color:#68717e;font-size:11px}
+.reports-export-primary{height:30px;padding:0 13px;border:0;border-radius:4px;background:#c77b36;color:white;font-size:11px;font-weight:650}
+.reports-tabs{display:flex;align-items:center;gap:22px;height:39px;flex:none;border-bottom:1px solid #dfe3e8}
+.reports-tabs button{height:39px;padding:0 5px;border:0;border-bottom:3px solid transparent;background:none;color:#4b5562;font-size:11px;white-space:nowrap}
+.reports-tabs button.active{border-bottom-color:#c77b36;color:#252d38;font-weight:700}
+.reports-filterbar{display:flex;align-items:center;gap:10px;min-height:43px;flex:none;white-space:nowrap}
+.reports-filterbar label,.reports-exportbar label{display:flex;align-items:center;gap:6px;color:#505b68;font-size:10px}
+.reports-filterbar select,.reports-filterbar input,.reports-exportbar select{height:26px;min-width:95px;padding:0 8px;border:1px solid #d1d6dd;border-radius:4px;background:#fff;color:#343d49;font-size:10px}
+.reports-filterbar input{width:155px}.reports-filterbar label:nth-child(3) select{min-width:110px}
+.reports-filterbar button{height:26px;padding:0 9px;border:0;background:transparent;color:#5b6470;font-size:10px}
+.reports-filterbar .reports-apply{min-width:55px;border-radius:4px;background:#c77b36;color:white;font-weight:650}
+.reports-filterbar .reports-clear{text-decoration:underline}.reports-filterbar .reports-refresh{width:27px;border:1px solid #d1d6dd;border-radius:4px;font-size:16px}
+.reports-exportbar{display:flex;align-items:center;gap:15px;min-height:34px;flex:none;border-top:1px solid #eef0f3}
+.reports-exportbar label{gap:7px}.reports-exportbar select{min-width:92px;height:24px}
+.reports-table-wrap{flex:0 1 auto;min-height:0;overflow:auto;border:1px solid #e2e5e9}
+.reports-table-wrap table{width:100%;border-collapse:collapse;table-layout:auto;font-size:10px}
+.reports-table-wrap th{height:26px;padding:4px 7px;background:#f0f2f5;color:#404a57;text-align:left;font-size:10px;font-weight:700;white-space:nowrap}
+.reports-table-wrap td{height:25px;padding:4px 7px;border-top:1px solid #e5e8ec;color:#333c48;white-space:nowrap}
+.reports-table-wrap tbody tr{cursor:pointer}.reports-table-wrap tbody tr:hover{background:#f8f9fb}.reports-table-wrap tbody tr.selected{background:#fbf0e6;box-shadow:inset 3px 0 #c77b36}
+.reports-result{display:inline-block;padding:3px 7px;border-radius:4px;background:#edf0f3;color:#59616c;font-size:9px;font-weight:700}
+.reports-result.good{background:#dff1e4;color:#2f7045}.reports-result.warn{background:#e8effb;color:#42658d}
+.reports-empty{padding:15px;color:#697382;font-size:11px}
+.reports-event-detail{flex:1 1 auto;min-height:110px;display:flex;flex-direction:column;overflow:hidden;margin-top:7px;border-top:1px solid #e0e4e8}
+.reports-event-title{display:flex;align-items:center;gap:12px;min-height:34px;flex:none}.reports-event-title h2{margin:0;font-size:15px;color:#252d38}
+.reports-event-title>span{padding:4px 8px;border-radius:3px;background:#f0f2f4;color:#66707d;font-size:9px}
+.reports-event-columns{display:grid;grid-template-columns:1fr 1fr;gap:15px;min-height:0;overflow:auto}
+.reports-event-meta{min-width:0}.reports-event-meta>div{display:grid;grid-template-columns:minmax(105px,1fr) minmax(0,1.25fr);gap:8px;min-height:22px;padding:3px 8px;border-bottom:1px solid #e6e9ed;font-size:10px}
+.reports-event-meta span{color:#586372}.reports-event-meta b{color:#252d38;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.reports-event-fields table{width:100%;border-collapse:collapse;font-size:10px}.reports-event-fields th,.reports-event-fields td{height:22px;padding:3px 8px;border-bottom:1px solid #e6e9ed;text-align:left}
+.reports-event-fields th{background:#f0f2f5;color:#45505d}.reports-event-fields td{color:#343d48}
+.reports-pagination{display:flex;align-items:center;justify-content:space-between;min-height:34px;flex:none;border-top:1px solid #e0e4e8;color:#68717d;font-size:10px}
+.reports-pagination>div{display:flex;align-items:center;gap:3px}.reports-pagination button{height:23px;min-width:22px;border:0;border-radius:3px;background:transparent;color:#56606c;font-size:10px}
+.reports-pagination button.current{background:#f4e4d5;color:#9a5a25;font-weight:700}.reports-pagination button:disabled{opacity:.4}
+.reports-statusbar{display:flex;align-items:center;gap:18px;min-height:25px;flex:none;border-top:1px solid #e0e4e8;color:#5f6975;font-size:9px;white-space:nowrap}
+.reports-statusbar span:first-child{color:#397b50}
+@media(max-width:900px){.reports-audit-shell main{padding:8px 9px 0}.reports-filterbar{gap:5px;overflow-x:auto}.reports-filterbar label{font-size:9px}.reports-filterbar select{min-width:75px}.reports-filterbar input{width:105px}.reports-table-wrap table{font-size:9px}.reports-table-wrap th,.reports-table-wrap td{padding:4px 5px}.reports-event-columns{gap:8px}}
+@media(max-height:700px){.reports-audit-heading{min-height:42px}.reports-tabs{height:33px}.reports-tabs button{height:33px}.reports-filterbar{min-height:36px}.reports-exportbar{min-height:29px}.reports-table-wrap th{height:23px}.reports-table-wrap td{height:22px}.reports-event-title{min-height:29px}.reports-event-meta>div{min-height:19px}.reports-pagination{min-height:28px}.reports-statusbar{min-height:22px}}
