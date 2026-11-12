@@ -1,17 +1,15 @@
-const now='2026-11-12T09:30:00+05:30'
+const now='2026-11-12T12:00:00+05:30'
 
-// One shared demo account is used by Funding, Borrowing and Trading screens.
-// Cash balance ₹15.25m less ₹0.85m blocked and ₹1.90m cash collateral = ₹12.50m available.
+// Demo figures below mirror the attached BorrowDesk Trading screen.
 export const demoAccount={
- availableCash:12500000,
- blockedCash:850000,
- pledgedCash:1900000,
- pendingDeposits:250000,
- cashBalance:15250000,
+ availableCash:2500000,
+ blockedCash:0,
+ pledgedCash:0,
+ pendingDeposits:0,
+ cashBalance:2500000,
  positions:[
-  {symbol:'INFY',quantity:2000,source:'Owned',marketValue:3565300},
-  {symbol:'RELIANCE',quantity:2500,source:'Settled borrowed',marketValue:3630875},
-  {symbol:'INFY',quantity:800,source:'Settled borrowed',marketValue:1426120}
+  {symbol:'INFY',quantity:2000,source:'Owned',marketValue:3265000},
+  {symbol:'INFY',quantity:10000,source:'Settled borrowed',marketValue:16325000}
  ]
 }
 export const demoDashboard={
@@ -24,16 +22,16 @@ export const demoDashboard={
  recentActivity:[]
 }
 export const demoSecurities=[
-{id:101,symbol:'RELIANCE',name:'Reliance Industries Limited',isin:'INE002A01018',exchange:'NSE',currency:'INR',price:1452.35,price_at:now,change:12.4,changePercent:.86,volume:2864120},
-{id:102,symbol:'TCS',name:'Tata Consultancy Services Limited',isin:'INE467B01029',exchange:'NSE',currency:'INR',price:3890.5,price_at:now,change:-18.2,changePercent:-.47,volume:952344},
-{id:103,symbol:'INFY',name:'Infosys Limited',isin:'INE009A01021',exchange:'NSE',currency:'INR',price:1782.65,price_at:now,change:8.75,changePercent:.49,volume:2864120},
-{id:104,symbol:'HDFCBANK',name:'HDFC Bank Limited',isin:'INE040A01034',exchange:'NSE',currency:'INR',price:1688.2,price_at:now,change:-5.3,changePercent:-.31,volume:3248901},
-{id:105,symbol:'ICICIBANK',name:'ICICI Bank Limited',isin:'INE090A01021',exchange:'NSE',currency:'INR',price:1298.75,price_at:now,change:14.1,changePercent:1.1,volume:4109776},
-{id:106,symbol:'ITC',name:'ITC Limited',isin:'INE154A01025',exchange:'NSE',currency:'INR',price:412.8,price_at:now,change:2.15,changePercent:.52,volume:1258700},
-{id:107,symbol:'SBIN',name:'State Bank of India',isin:'INE062A01020',exchange:'NSE',currency:'INR',price:842.1,price_at:now,change:-3.8,changePercent:-.45,volume:2104500},
-{id:108,symbol:'LT',name:'Larsen & Toubro Limited',isin:'INE018A01030',exchange:'NSE',currency:'INR',price:3625.4,price_at:now,change:31.2,changePercent:.87,volume:1189000}
+{id:103,symbol:'INFY',name:'Infosys Limited',isin:'INE009A01021',exchange:'NSE',currency:'INR',price:1632.50,price_at:now,change:13.30,changePercent:.82,volume:2864120,borrowedAvailable:10000,open:1629.80,high:1634.20,low:1628.50},
+{id:101,symbol:'RELIANCE',name:'Reliance Industries Limited',isin:'INE002A01018',exchange:'NSE',currency:'INR',price:2895.40,price_at:now,change:12.40,changePercent:.43,volume:1871006,borrowedAvailable:25000},
+{id:104,symbol:'HDFCBANK',name:'HDFC Bank Limited',isin:'INE040A01034',exchange:'NSE',currency:'INR',price:1761.20,price_at:now,change:-6.37,changePercent:-.36,volume:3248901,borrowedAvailable:0},
+{id:102,symbol:'TCS',name:'Tata Consultancy Services Limited',isin:'INE467B01029',exchange:'NSE',currency:'INR',price:4012.00,price_at:now,change:24.40,changePercent:.61,volume:952344,borrowedAvailable:8000},
+{id:105,symbol:'ICICIBANK',name:'ICICI Bank Limited',isin:'INE090A01021',exchange:'NSE',currency:'INR',price:1450.00,price_at:now,change:3.90,changePercent:.27,volume:4109776,borrowedAvailable:20000},
+{id:107,symbol:'SBIN',name:'State Bank of India',isin:'INE062A01020',exchange:'NSE',currency:'INR',price:885.00,price_at:now,change:-1.60,changePercent:-.18,volume:2104500,borrowedAvailable:12000},
+{id:108,symbol:'LT',name:'Larsen & Toubro Limited',isin:'INE018A01030',exchange:'NSE',currency:'INR',price:3315.00,price_at:now,change:17.80,changePercent:.54,volume:1189000,borrowedAvailable:5000},
+{id:106,symbol:'ITC',name:'ITC Limited',isin:'INE154A01025',exchange:'NSE',currency:'INR',price:425.60,price_at:now,change:-.94,changePercent:-.22,volume:1258700,borrowedAvailable:18000}
 ]
-export const demoWatchlist=[demoSecurities[2],demoSecurities[0],demoSecurities[3],demoSecurities[1],demoSecurities[4],demoSecurities[6],demoSecurities[7],demoSecurities[5]]
+export const demoWatchlist=demoSecurities
 const make=(id,security,counterparty,quantity,status,extra={})=>({id,security,counterparty,requestedQuantity:quantity,status,...extra})
 export const demoRows={
 'Locate requests':[
