@@ -77,6 +77,7 @@
 .demo-trading-page .chart-panel{flex:1;min-height:0;overflow:hidden}
 .demo-trading-page .lightweight-chart-wrap,.demo-trading-page .lightweight-chart{height:190px;min-height:190px}
 .demo-trading-page .order-ticket{overflow-y:auto}
+.demo-trading-page .dealing-layout>.order-ticket{margin-top:-8px;height:calc(100% + 8px);align-self:start}
 .demo-trading-page .trade-bottom{flex:none;max-height:142px;overflow:hidden;margin-top:7px}
 .demo-trading-page .bottom-grid-wrap{max-height:105px;overflow:auto}
 .demo-trading-page .trade-statusbar{flex:none;padding:5px 3px}
