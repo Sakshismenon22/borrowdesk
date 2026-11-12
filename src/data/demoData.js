@@ -107,7 +107,19 @@ export const demoRows={
  {id:'RP-2026-0081',loanId:'LN-000248',counterparty:'Alpha Asset Mgmt',security:'INFY',rebateRate:2.00,amount:8400,paymentDate:'2026-11-10',reference:'REB-PAY-081',status:'SETTLED'},
  {id:'RP-2026-0080',loanId:'LN-000249',counterparty:'Meridian Mutual Fund',security:'RELIANCE',rebateRate:1.85,amount:12500,paymentDate:'2026-11-07',reference:'REB-PAY-080',status:'SETTLED'}
 ],
-'Returns & recalls':[{id:6101,loanId:7101,security:'RELIANCE',quantity:500,dueAt:'2026-11-13',status:'OPEN'}],
+'Returns & recalls':[
+ {id:'RC-000043',loanId:'LN-000250',security:'HDFCBANK',lender:'Pioneer Securities',quantity:10000,fulfilledQuantity:4000,dueAt:'2026-11-12T15:30:00+05:30',status:'PARTIALLY_FULFILLED'},
+ {id:'RC-000044',loanId:'LN-000249',security:'RELIANCE',lender:'Meridian Mutual Fund',quantity:25000,fulfilledQuantity:0,dueAt:'2026-11-13T11:00:00+05:30',status:'OPEN'},
+ {id:'RC-000042',loanId:'LN-000251',security:'ICICIBANK',lender:'Alpha Asset Mgmt',quantity:5000,fulfilledQuantity:5000,dueAt:'2026-11-11T16:00:00+05:30',status:'FULFILLED'}
+],
+'Return requests':[
+ {id:'RC-000043',loanId:'LN-000250',security:'HDFCBANK',lender:'Pioneer Securities',quantity:4000,fulfilledQuantity:4000,dueAt:'2026-11-12T15:30:00+05:30',status:'CONFIRMED'},
+ {id:'RC-000044',loanId:'LN-000249',security:'RELIANCE',lender:'Meridian Mutual Fund',quantity:5000,fulfilledQuantity:0,dueAt:'2026-11-13T11:00:00+05:30',status:'REQUESTED'}
+],
+'Settled returns':[
+ {id:'RC-000042',loanId:'LN-000251',security:'ICICIBANK',lender:'Alpha Asset Mgmt',quantity:5000,fulfilledQuantity:5000,dueAt:'2026-11-11T16:00:00+05:30',status:'SETTLED'},
+ {id:'RC-000040',loanId:'LN-000248',security:'INFY',lender:'Alpha Asset Mgmt',quantity:2000,fulfilledQuantity:2000,dueAt:'2026-11-09T14:30:00+05:30',status:'SETTLED'}
+],
 'Agreements':[
  {id:1401,number:'MSLA-2026-014',lender:'Apex Capital',effectiveDate:'2026-01-01',expiryDate:'2026-12-31',creditLimit:25000000,feeRate:.035,rebateRate:.012,status:'ACTIVE'},
  {id:1402,number:'MSLA-2026-008',lender:'Meridian Securities',effectiveDate:'2026-04-01',expiryDate:'2027-03-31',creditLimit:18000000,feeRate:.03,rebateRate:.01,status:'ACTIVE'}
@@ -123,6 +135,6 @@ export function demoResource(page,tab){
  if(page==='Fees & rebates')return tab==='Daily accruals'?demoRows['Daily accruals']:tab==='Rebates'?demoRows.Rebates:tab==='Rebate payments'?demoRows['Rebate payments']:demoRows['Fees & rebates']
  if(page==='Collateral')return tab==='Pledge requests'?demoRows['Pledge requests']:tab==='Release requests'?demoRows['Release requests']:tab==='Movement history'?demoRows['Collateral movement history']:demoRows.Collateral
  if(page==='Reports & audit')return demoRows['Reports & audit']
- if(page==='Returns & recalls')return demoRows['Returns & recalls']
+ if(page==='Returns & recalls')return tab==='Return requests'?demoRows['Return requests']:tab==='Settled returns'?demoRows['Settled returns']:demoRows['Returns & recalls']
  return demoRows[page]||[]
 }
