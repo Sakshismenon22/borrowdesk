@@ -76,4 +76,32 @@ export default function TradingWorkspace({mode,org,borrowerApi,marketApi}){
   <div className="trade-statusbar"><span>● {isDemo?'Demo data loaded':'Borrower service '+(error?'needs attention':'connected')}</span><span>● Market data {busy?'loading':'available'}</span><span>● Paper execution</span><span>Last updated {new Date().toLocaleTimeString('en-IN')}</span></div>
  </div>
 }
-function CandleChart({rows}){const w=720,h=220,pad=12;if(!rows?.length)return <div className="empty chart-empty">No candle history returned for this security.</div>;const vals=rows.flatMap(x=>[x.low,x.high]).filter(Number.isFinite);const min=Math.min(...vals),max=Math.max(...vals),range=max-min||1,step=(w-pad*2)/rows.length;const y=v=>h-pad-(v-min)/range*(h-pad*2);return <svg className="candle-svg" viewBox={`0 0 ${w} ${h}`} role="img" aria-label="Candlestick price chart">{[0,1,2,3,4].map(i=><line key={i} x1={pad} x2={w-pad} y1={pad+i*(h-pad*2)/4} y2={pad+i*(h-pad*2)/4} stroke="#e7eaf0"/>)}{rows.map((x,i)=>{const up=x.close>=x.open;return <g key={i}><line x1={pad+i*step+step/2} x2={pad+i*step+step/2} y1={y(x.high)} y2={y(x.low)} stroke={up?'#24875b':'#c34e4e'} strokeWidth="1.2"/><rect x={pad+i*step+step*.18} y={Math.min(y(x.open),y(x.close))} width={Math.max(2,step*.64)} height={Math.max(1,Math.abs(y(x.open)-y(x.close)))} fill={up?'#24875b':'#c34e4e'}/></g>})}</svg>}
+function LightweightCandleChart({rows}){
+ const host=useRef(null),chartRef=useRef(null),seriesRef=useRef(null),volumeRef=useRef(null)
+ useEffect(()=>{
+  if(!host.current)return
+  const chart=createChart(host.current,{
+   autoSize:true,height:210,
+   layout:{background:{type:'solid',color:'#ffffff'},textColor:'#596270',attributionLogo:true},
+   grid:{vertLines:{color:'#eef0f3'},horzLines:{color:'#eef0f3'}},
+   rightPriceScale:{borderColor:'#e1e5ea'},
+   timeScale:{borderColor:'#e1e5ea',timeVisible:true,secondsVisible:false},
+   crosshair:{vertLine:{color:'#c8cdd4'},horzLine:{color:'#c8cdd4'}}
+  })
+  const series=chart.addSeries(CandlestickSeries,{upColor:'#24875b',downColor:'#c34e4e',borderUpColor:'#24875b',borderDownColor:'#c34e4e',wickUpColor:'#24875b',wickDownColor:'#c34e4e'})
+  const volume=chart.addSeries(HistogramSeries,{priceScaleId:'volume',priceFormat:{type:'volume'},lastValueVisible:false,priceLineVisible:false})
+  chart.priceScale('volume').applyOptions({scaleMargins:{top:0.82,bottom:0}})
+  chartRef.current=chart;seriesRef.current=series;volumeRef.current=volume
+  const observer=new ResizeObserver(entries=>{if(entries[0]&&chartRef.current)chartRef.current.applyOptions({width:entries[0].contentRect.width})})
+  observer.observe(host.current)
+  return()=>{observer.disconnect();chart.remove();chartRef.current=null;seriesRef.current=null;volumeRef.current=null}
+ },[])
+ useEffect(()=>{
+  if(!seriesRef.current||!volumeRef.current)return
+  const valid=(rows||[]).filter(x=>Number.isFinite(x.time)&&x.open>0&&x.high>0&&x.low>0&&x.close>0)
+  const data=valid.map(x=>({time:Math.floor(x.time),open:x.open,high:x.high,low:x.low,close:x.close}))
+  const volumes=valid.map(x=>({time:Math.floor(x.time),value:x.volume||0,color:x.close>=x.open?'rgba(36,135,91,.42)':'rgba(195,78,78,.42)'}))
+  seriesRef.current.setData(data);volumeRef.current.setData(volumes);chartRef.current?.timeScale().fitContent()
+ },[rows])
+ return <div className="lightweight-chart-wrap"><div ref={host} className="lightweight-chart"/>{!rows?.length&&<div className="chart-overlay">No candle history returned for this security.</div>}</div>
+}
