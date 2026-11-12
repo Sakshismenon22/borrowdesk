@@ -88,8 +88,24 @@ export const demoRows={
  {id:302,transactionId:'TXN-2026-302',date:'2026-11-11',type:'WITHDRAWAL',reference:'WD-204',credit:0,debit:75000,balance:15325000,status:'SETTLED'}
 ],
 'Fees & rebates':[
- {id:4101,loanId:7101,security:'RELIANCE',feeAmount:42850,periodEnd:'2026-11-11',status:'DUE',recordType:'FEE'},
- {id:4102,loanId:7102,security:'INFY',amount:12600,periodEnd:'2026-11-11',status:'ACCRUED',recordType:'REBATE'}
+ {id:'FB-2026-04101',loanId:'LN-000249',counterparty:'Meridian Mutual Fund',security:'RELIANCE',feeRate:3.35,amount:42850,dueDate:'2026-11-15',paidAmount:0,status:'DUE',recordType:'FEE',periodEnd:'2026-11-11'},
+ {id:'FB-2026-04102',loanId:'LN-000248',counterparty:'Alpha Asset Mgmt',security:'INFY',feeRate:3.20,amount:32650,dueDate:'2026-11-10',paidAmount:32650,status:'PAID',recordType:'FEE',periodEnd:'2026-11-11'},
+ {id:'FB-2026-04103',loanId:'LN-000250',counterparty:'Pioneer Securities',security:'HDFCBANK',feeRate:3.10,amount:26418,dueDate:'2026-11-18',paidAmount:0,status:'DUE',recordType:'FEE',periodEnd:'2026-11-11'},
+ {id:'FB-2026-04104',loanId:'LN-000251',counterparty:'Crest Capital',security:'TCS',feeRate:3.75,amount:32096,dueDate:'2026-11-12',paidAmount:0,status:'PENDING',recordType:'FEE',periodEnd:'2026-11-11'}
+],
+'Daily accruals':[
+ {id:'AC-2026-11012',loanId:'LN-000249',counterparty:'Meridian Mutual Fund',security:'RELIANCE',feeRate:3.35,accrualDate:'2026-11-12',daysAccrued:12,amount:4285,status:'ACCRUED'},
+ {id:'AC-2026-11011',loanId:'LN-000248',counterparty:'Alpha Asset Mgmt',security:'INFY',feeRate:3.20,accrualDate:'2026-11-12',daysAccrued:12,amount:3265,status:'ACCRUED'},
+ {id:'AC-2026-11010',loanId:'LN-000250',counterparty:'Pioneer Securities',security:'HDFCBANK',feeRate:3.10,accrualDate:'2026-11-12',daysAccrued:8,amount:2642,status:'ACCRUED'}
+],
+'Rebates':[
+ {id:'RB-2026-0201',loanId:'LN-000248',counterparty:'Alpha Asset Mgmt',security:'INFY',rebateRate:2.00,amount:12600,periodEnd:'2026-11-11',dueDate:'2026-11-18',status:'ACCRUED'},
+ {id:'RB-2026-0202',loanId:'LN-000249',counterparty:'Meridian Mutual Fund',security:'RELIANCE',rebateRate:1.85,amount:18450,periodEnd:'2026-11-11',dueDate:'2026-11-18',status:'ACCRUED'},
+ {id:'RB-2026-0203',loanId:'LN-000250',counterparty:'Pioneer Securities',security:'HDFCBANK',rebateRate:1.75,amount:9200,periodEnd:'2026-11-11',dueDate:'2026-11-20',status:'PENDING'}
+],
+'Rebate payments':[
+ {id:'RP-2026-0081',loanId:'LN-000248',counterparty:'Alpha Asset Mgmt',security:'INFY',rebateRate:2.00,amount:8400,paymentDate:'2026-11-10',reference:'REB-PAY-081',status:'SETTLED'},
+ {id:'RP-2026-0080',loanId:'LN-000249',counterparty:'Meridian Mutual Fund',security:'RELIANCE',rebateRate:1.85,amount:12500,paymentDate:'2026-11-07',reference:'REB-PAY-080',status:'SETTLED'}
 ],
 'Returns & recalls':[{id:6101,loanId:7101,security:'RELIANCE',quantity:500,dueAt:'2026-11-13',status:'OPEN'}],
 'Agreements':[
@@ -104,7 +120,7 @@ export const demoRows={
 export function demoResource(page,tab){
  if(page==='Borrowing blotter')return demoRows['Active loans']
  if(page==='Funding & account')return tab==='Withdrawals'?demoRows['Funding & account'].filter(x=>x.type==='WITHDRAWAL'):tab==='Deposits'?demoRows['Funding & account'].filter(x=>x.type==='DEPOSIT'):demoRows['Funding & account']
- if(page==='Fees & rebates')return demoRows['Fees & rebates']
+ if(page==='Fees & rebates')return tab==='Daily accruals'?demoRows['Daily accruals']:tab==='Rebates'?demoRows.Rebates:tab==='Rebate payments'?demoRows['Rebate payments']:demoRows['Fees & rebates']
  if(page==='Collateral')return tab==='Pledge requests'?demoRows['Pledge requests']:tab==='Release requests'?demoRows['Release requests']:tab==='Movement history'?demoRows['Collateral movement history']:demoRows.Collateral
  if(page==='Reports & audit')return demoRows['Reports & audit']
  if(page==='Returns & recalls')return demoRows['Returns & recalls']
