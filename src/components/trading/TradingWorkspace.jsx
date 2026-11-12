@@ -1,7 +1,7 @@
 import {useEffect,useMemo,useRef,useState} from 'react'
 import {createChart,CandlestickSeries,HistogramSeries} from 'lightweight-charts'
 import {demoAccount,demoSecurities,demoWatchlist} from '../../data/demoData'
-import {api} from '../../services/apiClient'
+import {borrowerRequest} from '../../services/borrowerService'
 import {getSecurityMaster,getCurrentPrices,getHistoricalCandles} from '../../services/marketDataService'
 
 const unwrap=x=>x?.data??x
@@ -14,7 +14,7 @@ async function loadMarketUniverse(borrowerApi,marketApi){
  const [masterRaw,priceRaw,borrowerRaw]=await Promise.all([
   getSecurityMaster(marketApi),
   getCurrentPrices(marketApi),
-  api(borrowerApi,'/api/v1/securities')
+  borrowerRequest(borrowerApi,'/api/v1/securities')
  ])
  const prices=rows(priceRaw),borrowers=rows(borrowerRaw)
  const priceById=new Map(prices.map(p=>[String(p.security?.id??p.securityId??p.security?.securityId),p]))
@@ -37,7 +37,7 @@ export default function TradingWorkspace({mode,org,borrowerApi,marketApi}){
  const [chartLoading,ChartLoading]=useState(false),[universe,U]=useState([]),[watch,W]=useState([]),[query,Q]=useState(''),[selected,S]=useState(null),[candles,K]=useState([]),[interval,I]=useState('5m'),[side,Side]=useState('BUY'),[type,Type]=useState('MARKET'),[source,Source]=useState('OWNED'),[qty,Qty]=useState('1000'),[limit,Limit]=useState(''),[orders,O]=useState([]),[trades,T]=useState([]),[cash,Cash]=useState(mode==='DEMO'?demoCash:0),[holdings,H]=useState(mode==='DEMO'?demoHoldings:[]),[tab,Tab]=useState('Open orders'),[error,E]=useState(''),[toast,Toast]=useState(''),[busy,B]=useState(false),[review,Review]=useState(true)
  const base=borrowerApi+'/api/v1/organizations/'+org
  const isDemo=mode==='DEMO'
- const loadChart=async(item,period=interval)=>{if(!item)return;ChartLoading(true);try{if(isDemo){K(aggregateCandles(makeDemoCandles(item.price),period));return}const params=new URLSearchParams({symbol:item.symbol,exchange:item.exchange||'NSE'});const raw=await getHistoricalCandles(marketApi,item.symbol,item.exchange||'NSE');const history=rows(raw).map(candle).filter(x=>Number.isFinite(x.time)&&x.open>0&&x.high>0&&x.low>0&&x.close>0).sort((a,b)=>a.time-b.time);const unique=[...new Map(history.map(x=>[x.time,x])).values()];K(aggregateCandles(unique,period));if(!unique.length)E('No historical candles found for '+item.symbol+' on '+(item.exchange||'NSE')+'.')}catch(e){K([]);E('Market data history unavailable: '+e.message+' — check VITE_MARKET_API and market-data-service.')}finally{ChartLoading(false)}}
+ const loadChart=async(item,period=interval)=>{if(!item)return;ChartLoading(true);try{if(isDemo){K(aggregateCandles(makeDemoCandles(item.price),period));return}const raw=await getHistoricalCandles(marketApi,item.symbol,item.exchange||'NSE');const history=rows(raw).map(candle).filter(x=>Number.isFinite(x.time)&&x.open>0&&x.high>0&&x.low>0&&x.close>0).sort((a,b)=>a.time-b.time);const unique=[...new Map(history.map(x=>[x.time,x])).values()];K(aggregateCandles(unique,period));if(!unique.length)E('No historical candles found for '+item.symbol+' on '+(item.exchange||'NSE')+'.')}catch(e){K([]);E('Market data history unavailable: '+e.message+' — check VITE_MARKET_API and market-data-service.')}finally{ChartLoading(false)}}
  useEffect(()=>{let alive=true;B(true);E('');if(isDemo){const all=demoSecurities.map(security);const wl=demoWatchlist.map(security);U(all);W(wl);S(all.find(x=>x.symbol==='INFY')||wl[0]||all[0]||null);O([{id:'OD-000784',createdAt:'11:56:21',symbol:'INFY',side:'BUY',type:'LIMIT',source:'OWNED',quantity:1000,limitPrice:1625,status:'PENDING'},{id:'OD-000783',createdAt:'11:49:02',symbol:'RELIANCE',side:'SELL',type:'LIMIT',source:'BORROWED',quantity:500,limitPrice:2900,status:'PENDING'},{id:'OD-000782',createdAt:'11:41:37',symbol:'ICICIBANK',side:'BUY',type:'LIMIT',source:'OWNED',quantity:1500,limitPrice:1445,status:'PENDING'}]);T([]);Cash(demoCash);H(demoHoldings);B(false);return()=>{alive=false}}
  Promise.all([loadMarketUniverse(borrowerApi,marketApi),api('',base+'/watchlist'),api('',base+'/orders?size=100'),api('',base+'/trades?size=100'),api('',base+'/account')]).then(([securitiesRaw,w,o,t,a])=>{if(!alive)return;const securities=securitiesRaw;const bySymbol=new Map(securities.map(x=>[x.symbol.toUpperCase(),x]));const byBorrowerId=new Map(securities.filter(x=>x.borrowerSecurityId!=null).map(x=>[String(x.borrowerSecurityId),x]));const watchlist=rows(w).map(x=>bySymbol.get(symbolOf(x))||byBorrowerId.get(String(x.id??x.securityId))||security(x));U(securities);W(watchlist);S(watchlist[0]||securities[0]||null);O(rows(o));T(rows(t));const account=unwrap(a)||{};Cash(n(account.availableCash??account.available_cash??account.cashBalance??account.balance));H(Array.isArray(account.positions)?account.positions:Array.isArray(account.holdings)?account.holdings:[])}).catch(e=>alive&&E(e.message+' — verify market-data-service security master/current prices, borrower service, and organization ID.')).finally(()=>alive&&B(false));return()=>{alive=false}},[mode,org,borrowerApi,marketApi])
  useEffect(()=>{if(selected)loadChart(selected,interval)},[selected?.id,mode,interval,marketApi])
