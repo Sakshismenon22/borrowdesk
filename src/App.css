@@ -828,3 +828,97 @@ body:has(.returns-recall-demo-details) #root{height:100dvh;min-height:0;overflow
  .returns-detail-content{grid-template-columns:minmax(0,1.15fr) minmax(220px,1fr)}
  .returns-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+
+/* Demo Returns & recalls: keep the complete workspace inside one viewport. */
+.shell:has(.returns-recall-demo-details){
+  height:100vh;
+  min-height:0;
+  overflow:hidden;
+}
+.shell:has(.returns-recall-demo-details)>.side{
+  height:100vh;
+  min-height:0;
+  overflow:hidden;
+}
+.shell:has(.returns-recall-demo-details)>.main{
+  height:100vh;
+  min-height:0;
+  overflow:hidden;
+}
+.main:has(.returns-recall-demo-details)>main{
+  box-sizing:border-box;
+  display:flex;
+  flex:1 1 auto;
+  flex-direction:column;
+  height:calc(100vh - 85px);
+  min-height:0;
+  overflow:hidden;
+  padding:8px 12px 4px;
+}
+.main:has(.returns-recall-demo-details)>.main{}
+.main:has(.returns-recall-demo-details) .heading,
+.main:has(.returns-recall-demo-details) .stats,
+.main:has(.returns-recall-demo-details) .tabs,
+.main:has(.returns-recall-demo-details) .filters,
+.main:has(.returns-recall-demo-details) .returns-recall-totals,
+.main:has(.returns-recall-demo-details) .footrow{
+  flex:none;
+}
+.main:has(.returns-recall-demo-details) .heading{padding-bottom:7px}
+.main:has(.returns-recall-demo-details) .stats{min-height:38px}
+.main:has(.returns-recall-demo-details) .tabs{height:32px}
+.main:has(.returns-recall-demo-details) .filters{padding:5px 0;gap:7px}
+.main:has(.returns-recall-demo-details) .tablebox{
+  flex:0 1 170px;
+  min-height:100px;
+  max-height:170px;
+  overflow:auto;
+}
+.main:has(.returns-recall-demo-details) .tablebox th,
+.main:has(.returns-recall-demo-details) .tablebox td{height:25px}
+.main:has(.returns-recall-demo-details) .footrow{height:23px;padding:3px 8px}
+.main:has(.returns-recall-demo-details) .returns-recall-totals{
+  margin-top:2px;
+  padding:4px 10px;
+}
+.main:has(.returns-recall-demo-details) .returns-recall-demo-details{
+  flex:1 1 0;
+  min-height:0;
+  height:0;
+  margin-top:5px;
+  overflow:hidden;
+}
+.main:has(.returns-recall-demo-details) .returns-recall-demo-details>section{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  min-height:0;
+  overflow:hidden;
+  padding:7px 9px;
+}
+.main:has(.returns-recall-demo-details) .returns-recall-demo-details .detailhead,
+.main:has(.returns-recall-demo-details) .returns-recall-demo-details .detailtabs{flex:none}
+.main:has(.returns-recall-demo-details) .returns-detail-content{
+  flex:1 1 0;
+  min-height:0;
+  overflow:hidden;
+  gap:9px;
+}
+.main:has(.returns-recall-demo-details) .returns-detail-left,
+.main:has(.returns-recall-demo-details) .returns-detail-right{
+  min-height:0;
+  overflow:auto;
+}
+@media(max-height:760px){
+  .main:has(.returns-recall-demo-details)>main{padding-top:5px}
+  .main:has(.returns-recall-demo-details) .heading{padding-bottom:4px}
+  .main:has(.returns-recall-demo-details) .stats{min-height:32px}
+  .main:has(.returns-recall-demo-details) .tabs{height:28px}
+  .main:has(.returns-recall-demo-details) .tablebox{flex-basis:125px;max-height:125px;min-height:78px}
+  .main:has(.returns-recall-demo-details) .returns-detail-grid{gap:5px 8px}
+}
+@media(max-width:900px){
+  .shell:has(.returns-recall-demo-details){min-width:760px}
+  .main:has(.returns-recall-demo-details) .returns-detail-content{grid-template-columns:minmax(0,1.2fr) minmax(250px,1fr)}
+}
